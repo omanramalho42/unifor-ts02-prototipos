@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://cvx7kennjbu3v"]
+
+[ext_resource type="Script" uid="uid://dvsr81d646kqs" path="res://scenes/hud.gd" id="1_ahhtf"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1040846964]
+script = ExtResource("1_ahhtf")
+
+[node name="Control" type="Control" parent="." unique_id=188399641]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Cronometro" type="Label" parent="Control" unique_id=1231557162]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="Pontuacao" type="Label" parent="Control" unique_id=1068689595]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 23.0
+grow_horizontal = 0
+
+[node name="Inventario" type="HBoxContainer" parent="Control" unique_id=1127189997]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/Inventario" unique_id=592249433]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Inventario" unique_id=36278192]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Inventario" unique_id=973425037]
+layout_mode = 2
+
+[node name="TextureRect4" type="TextureRect" parent="Control/Inventario" unique_id=1472291812]
+layout_mode = 2
+
+[node name="TextureRect5" type="TextureRect" parent="Control/Inventario" unique_id=1486419190]
+layout_mode = 2
+
+[node name="Vidas" type="HBoxContainer" parent="Control" unique_id=1694471273]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 41.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="Control/Vidas" unique_id=761828869]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="Control/Vidas" unique_id=260214672]
+layout_mode = 2
+
+[node name="TextureRect3" type="TextureRect" parent="Control/Vidas" unique_id=2060086140]
+layout_mode = 2

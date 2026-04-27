@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://iqorrcl38xt5"]
+
+[ext_resource type="Script" uid="uid://8h55yowsgxkj" path="res://scenes/start_screen.gd" id="1_tx5wa"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tx5wa"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o7i0r"]
+
+[node name="StartScreen" type="Control" unique_id=897350838]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tx5wa")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=15156710]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("PlaceholderTexture2D_tx5wa")
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=294573184]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = SubResource("PlaceholderTexture2D_o7i0r")
+
+[node name="Button" type="Button" parent="." unique_id=383852]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=225296875]

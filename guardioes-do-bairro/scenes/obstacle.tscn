@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://65glxtwei64a"]
+
+[ext_resource type="Script" uid="uid://bvb3gbskjo0dm" path="res://scenes/obstacle.gd" id="1_7ukg5"]
+
+[node name="Obstacle" type="Area2D" unique_id=894107661]
+script = ExtResource("1_7ukg5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=933267235]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=291419763]

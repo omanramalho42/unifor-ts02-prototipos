@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://yjpajvwss03u"]
+
+[ext_resource type="Script" uid="uid://c4qf3fy0tp0gk" path="res://scenes/instruction_screen.gd" id="1_r8sh0"]
+
+[node name="InstructionScreen" type="Control" unique_id=367033331]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r8sh0")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2101151581]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1271753485]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1822391574]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1505372949]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=279078073]
+layout_mode = 2
+
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=491872264]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="." unique_id=403737126]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0

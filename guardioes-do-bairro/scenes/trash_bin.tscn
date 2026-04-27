@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://5rmu1xot5hvp"]
+
+[ext_resource type="Script" uid="uid://dqdhfk4owgc5n" path="res://scenes/trash_bin.gd" id="1_6ftrw"]
+
+[node name="TrashBin" type="Area2D" unique_id=615893720]
+script = ExtResource("1_6ftrw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263848153]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234616243]
+
+[connection signal="lixo_depositado" from="." to="." method="_on_lixo_depositado"]

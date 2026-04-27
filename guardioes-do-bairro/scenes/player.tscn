@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bnx5d5uswai4m"]
+
+[ext_resource type="Script" uid="uid://cfddiseut3tk3" path="res://scenes/player.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://bbu0kupc0evyl" path="res://assets/Mario_Small_Idle.png" id="2_g2els"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qhqgy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_g2els")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dqkch"]
+size = Vector2(12, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
+size = Vector2(12, 18)
+
+[node name="Player" type="CharacterBody2D" unique_id=1787145465]
+script = ExtResource("1_3vyb7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1260084796]
+sprite_frames = SubResource("SpriteFrames_qhqgy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1461088231]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_dqkch")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=408304593]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2083425802]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_g2els")
+
+[node name="InvulnerabilidadeTimer" type="Timer" parent="." unique_id=1962790556]
+
+[connection signal="descarte_feito" from="." to="." method="_on_descarte_feito"]
+[connection signal="lixo_coletado" from="." to="." method="_on_lixo_coletado"]
+[connection signal="morreu" from="." to="." method="_on_morreu"]
+[connection signal="vida_alterada" from="." to="." method="_on_vida_alterada"]

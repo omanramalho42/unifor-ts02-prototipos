@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://c8ym6tkeoqk60"]
+
+[ext_resource type="Script" uid="uid://fvykhp83265a" path="res://scenes/lose_screen.gd" id="1_uglf1"]
+
+[node name="LoseScreen" type="Control" unique_id=1167757211]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uglf1")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1996089663]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="." unique_id=2053526254]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="." unique_id=1518480367]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1678994421]

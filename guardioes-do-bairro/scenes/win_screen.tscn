@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://crd353xofv1ku"]
+
+[ext_resource type="Script" uid="uid://cru488iyjfpaq" path="res://scenes/win_screen.gd" id="1_wv5lq"]
+
+[node name="WinScreen" type="Control" unique_id=1785888739]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_wv5lq")
+
+[node name="Label" type="Label" parent="." unique_id=1567041008]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="." unique_id=1013205307]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label3" type="Label" parent="." unique_id=1155627385]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="." unique_id=1412992542]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=84170980]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1639213994]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0

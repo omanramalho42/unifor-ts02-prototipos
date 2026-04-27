@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://d1aul7vw2yvrd"]
+
+[ext_resource type="Script" uid="uid://cih0cgib7tlys" path="res://scenes/collectible.gd" id="1_bkg8t"]
+
+[node name="Collectible" type="Area2D" unique_id=2099987058]
+script = ExtResource("1_bkg8t")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1121604490]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1773477319]
+
+[connection signal="coletado" from="." to="." method="_on_coletado"]
