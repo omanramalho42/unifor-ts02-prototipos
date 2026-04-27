@@ -21,6 +21,7 @@ size = Vector2(12, 18)
 size = Vector2(12, 18)
 
 [node name="Player" type="CharacterBody2D" unique_id=1787145465]
+scale = Vector2(2, 2)
 script = ExtResource("1_3vyb7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1260084796]

@@ -25,10 +25,11 @@ b = Vector2(0, -28)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3ffmx"]
 a = Vector2(6, 764)
-b = Vector2(1368, 764)
+b = Vector2(2436, 755)
 
 [node name="Street" type="Node2D" unique_id=2069552500]
 script = ExtResource("1_yrasx")
+metadata/_edit_horizontal_guides_ = [320.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526574870]
 position = Vector2(-576, -321)
@@ -37,9 +38,17 @@ texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=97365126]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1935162043]
+position = Vector2(578, -321.00003)
+scale = Vector2(0.8385417, 0.8385417)
+texture = ExtResource("1_tr5t1")
+centered = false
+script = SubResource("GDScript_t23v0")
 
 [node name="Player" parent="." unique_id=1787145465 instance=ExtResource("2_3ffmx")]
+position = Vector2(34, 0)
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=97365126]
 
 [node name="DamageArea" type="Area2D" parent="." unique_id=1773741218]
 
@@ -52,7 +61,13 @@ shape = SubResource("SegmentShape2D_t23v0")
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1884749587]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1010268763]
-position = Vector2(-649, -441)
+position = Vector2(-687, -826)
+shape = SubResource("SegmentShape2D_3ffmx")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1550971507]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2050380529]
+position = Vector2(-687, -438)
 shape = SubResource("SegmentShape2D_3ffmx")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=276398000]

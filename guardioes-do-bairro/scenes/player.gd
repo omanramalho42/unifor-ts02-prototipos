@@ -1,13 +1,14 @@
 extends CharacterBody2D
 
 const VELOCIDADE := 180.0
-const FORCA_PULO := -380.0
-const GRAVIDADE := 900.0
+const PULO_ALTURA := 16.0
+const PULO_DURACAO := 0.4
 
 @export var vidas_max: int = 3
 
 var vidas: int = 3
 var invulneravel: bool = false
+var pulando: bool = false
 var inventario: Array[int] = []
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -25,14 +26,28 @@ func _ready() -> void:
 	timer_invulneravel.wait_time = 1.0
 	timer_invulneravel.timeout.connect(_fim_invulnerabilidade)
 
-func _physics_process(delta: float) -> void:
-	if not is_on_floor():
-		velocity.y += GRAVIDADE * delta
-	var direcao := Input.get_axis("ui_left", "ui_right")
-	velocity.x = direcao * VELOCIDADE
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = FORCA_PULO
+func _physics_process(_delta: float) -> void:
+	var direcao := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	velocity = direcao * VELOCIDADE
+	if Input.is_action_just_pressed("ui_accept") and not pulando:
+		_pular()
 	move_and_slide()
+
+func _pular() -> void:
+	pulando = true
+	invulneravel = true
+	var y_inicial := sprite.position.y
+	var tween := create_tween()
+	tween.tween_property(sprite, "position:y", y_inicial - PULO_ALTURA, PULO_DURACAO / 2.0)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	tween.tween_property(sprite, "position:y", y_inicial, PULO_DURACAO / 2.0)\
+		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	tween.tween_callback(_fim_pulo)
+
+func _fim_pulo() -> void:
+	pulando = false
+	if not timer_invulneravel.time_left > 0:
+		invulneravel = false
 
 func receber_dano(quantidade: int) -> void:
 	if invulneravel:
@@ -59,7 +74,8 @@ func adicionar_lixo(tipo: int) -> void:
 	lixo_coletado.emit(tipo)
 
 func _fim_invulnerabilidade() -> void:
-	invulneravel = false
+	if not pulando:
+		invulneravel = false
 	sprite.modulate.a = 1.0
 
 func _piscar() -> void:
@@ -69,16 +85,16 @@ func _piscar() -> void:
 
 
 func _on_descarte_feito(tipo: int, acertou: bool) -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_morreu() -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_lixo_coletado(tipo: int) -> void:
-	pass # Replace with function body.
+	pass
 
 
 func _on_vida_alterada(vidas_atuais: int) -> void:
-	pass # Replace with function body.
+	pass
