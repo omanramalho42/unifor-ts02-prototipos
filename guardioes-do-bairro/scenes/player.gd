@@ -10,6 +10,7 @@ var vidas: int = 3
 var invulneravel: bool = false
 var pulando: bool = false
 var inventario: Array[int] = []
+var ultima_direcao: String = "down"
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer_invulneravel: Timer = $InvulnerabilidadeTimer
@@ -32,6 +33,18 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_accept") and not pulando:
 		_pular()
 	move_and_slide()
+	_atualizar_animacao()
+
+func _atualizar_animacao() -> void:
+	var movendo := velocity.length() > 0.0
+	if movendo:
+		if absf(velocity.x) >= absf(velocity.y):
+			ultima_direcao = "right" if velocity.x > 0.0 else "left"
+		else:
+			ultima_direcao = "down" if velocity.y > 0.0 else "up"
+	var prefixo := "walk_" if movendo else "idle_"
+	sprite.play(prefixo + ultima_direcao)
+	sprite.flip_h = ultima_direcao == "left"
 
 func _pular() -> void:
 	pulando = true

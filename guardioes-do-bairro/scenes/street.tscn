@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
 [ext_resource type="PackedScene" uid="uid://bnx5d5uswai4m" path="res://scenes/player.tscn" id="2_3ffmx"]
 [ext_resource type="PackedScene" uid="uid://cvx7kennjbu3v" path="res://scenes/hud.tscn" id="3_t23v0"]
+[ext_resource type="Script" uid="uid://cf625bi22qkev" path="res://scenes/damage_area.gd" id="4_yrasx"]
 
 [sub_resource type="GDScript" id="GDScript_t23v0"]
 script/source = "extends Sprite2D
@@ -19,59 +20,75 @@ func _process(delta: float) -> void:
 	pass
 "
 
-[sub_resource type="SegmentShape2D" id="SegmentShape2D_t23v0"]
-a = Vector2(-3, 773)
-b = Vector2(0, -28)
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yrasx"]
+a = Vector2(-3.5, -620)
+b = Vector2(-6.5, 443)
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_3ffmx"]
-a = Vector2(6, 764)
-b = Vector2(2436, 755)
+a = Vector2(-860, -3)
+b = Vector2(1900, 7)
 
 [node name="Street" type="Node2D" unique_id=2069552500]
 script = ExtResource("1_yrasx")
 metadata/_edit_horizontal_guides_ = [320.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526574870]
-position = Vector2(-576, -321)
 scale = Vector2(0.8385417, 0.8385417)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
 [node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1935162043]
-position = Vector2(578, -321.00003)
+position = Vector2(1153, 1.9073486e-06)
+scale = Vector2(0.8385417, 0.8385417)
+texture = ExtResource("1_tr5t1")
+centered = false
+script = SubResource("GDScript_t23v0")
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=566994125]
+position = Vector2(2307, 0)
 scale = Vector2(0.8385417, 0.8385417)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
 [node name="Player" parent="." unique_id=1787145465 instance=ExtResource("2_3ffmx")]
-position = Vector2(34, 0)
+position = Vector2(261, 405)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=97365126]
-
-[node name="DamageArea" type="Area2D" parent="." unique_id=1773741218]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=373366801]
-position = Vector2(-574, -401)
-shape = SubResource("SegmentShape2D_t23v0")
+anchor_mode = 0
 
 [node name="HUD" parent="." unique_id=1040846964 instance=ExtResource("3_t23v0")]
 
+[node name="DamageArea" type="Area2D" parent="." unique_id=1773741218]
+position = Vector2(20, 295)
+script = ExtResource("4_yrasx")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=373366801]
+position = Vector2(-16, 8)
+shape = SubResource("SegmentShape2D_yrasx")
+
+[node name="Timer" type="Timer" parent="DamageArea" unique_id=1939589790]
+
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1884749587]
+position = Vector2(192, 642)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1010268763]
-position = Vector2(-687, -826)
+position = Vector2(0, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1550971507]
+position = Vector2(663, 248)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2050380529]
-position = Vector2(-687, -438)
+position = Vector2(3, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=276398000]
+position = Vector2(950, 460)
 
 [node name="Node2D2" type="Node2D" parent="." unique_id=1346403482]
+position = Vector2(1006, 222)
 
 [node name="Node2D3" type="Node2D" parent="." unique_id=1516590081]
+position = Vector2(657, 187)

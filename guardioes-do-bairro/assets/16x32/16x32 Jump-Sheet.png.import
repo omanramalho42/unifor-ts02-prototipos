@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbu0kupc0evyl"
-path="res://.godot/imported/Mario_Small_Idle.png-ffc5bd8f267554d34d71d4d0f75112ab.ctex"
+uid="uid://br504emf1xjrs"
+path="res://.godot/imported/16x32 Jump-Sheet.png-63eb9876d059826c1d5436c380b197d7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Mario_Small_Idle.png"
-dest_files=["res://.godot/imported/Mario_Small_Idle.png-ffc5bd8f267554d34d71d4d0f75112ab.ctex"]
+source_file="res://assets/16x32/16x32 Jump-Sheet.png"
+dest_files=["res://.godot/imported/16x32 Jump-Sheet.png-63eb9876d059826c1d5436c380b197d7.ctex"]
 
 [params]
 

@@ -1,7 +1,7 @@
 extends Node2D
 
 const VELOCIDADE_CAMERA := 60.0
-const FIM_DA_FASE_X := 3000.0
+const FIM_DA_FASE_X := 1300.0
 
 @onready var camera: Camera2D = $Camera2D
 @onready var player: CharacterBody2D = $Player
@@ -45,7 +45,7 @@ func _process(delta: float) -> void:
 		hud.atualizar_cronometro(tempo)
 
 	camera.position.x += VELOCIDADE_CAMERA * delta
-	damage_area.position.x = camera.position.x - 600.0
+	damage_area.position.x = camera.position.x
 
 	if camera.position.x >= FIM_DA_FASE_X:
 		_terminar_fase(true)
