@@ -1,52 +1,12 @@
 [gd_scene load_steps=10 format=3 uid="uid://m6rr6kbyk5bf"]
 
-[ext_resource type="Script" uid="uid://dqdjhvfhdr5ny" path="res://prefabs/tittle_screen.gd" id="1_wb77v"]
+[ext_resource type="Script" path="res://prefabs/tittle_screen.gd" id="1_wb77v"]
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_wpuga"]
 [ext_resource type="Texture2D" uid="uid://dysyu15tgokjb" path="res://assets/logo-removebg-preview.png" id="2_vhpic"]
-[ext_resource type="Theme" uid="uid://cw0y7xdmm5c5l" path="res://default_btn.tres" id="3_vhpic"]
+[ext_resource type="Theme" uid="uid://bhv00vxf42ptf" path="res://default_btn.tres" id="3_vhpic"]
 [ext_resource type="Texture2D" uid="uid://bs2kyv01o8ki7" path="res://assets/diagonal_direita-removebg-preview.png" id="3_wb77v"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wb77v"]
-
-[sub_resource type="Animation" id="Animation_wb77v"]
-resource_name = "review"
-length = 1.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("background:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("MarginContainer:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0.2, 0.6),
-"transitions": PackedFloat32Array(0.18301046, 1),
-"update": 0,
-"values": [Vector2(-500, 0), Vector2(0, 0)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("MarginContainer/HBoxContainer/MOCHI:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.7, 1.1),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
-}
 
 [sub_resource type="Animation" id="Animation_i7rao"]
 length = 0.001
@@ -87,10 +47,50 @@ tracks/2/keys = {
 "values": [Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_wb77v"]
+resource_name = "review"
+length = 1.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("background:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MarginContainer:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.2, 0.6),
+"transitions": PackedFloat32Array(0.18301, 1),
+"update": 0,
+"values": [Vector2(-500, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MarginContainer/HBoxContainer/MOCHI:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.7, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_we8ok"]
 _data = {
-&"RESET": SubResource("Animation_i7rao"),
-&"review": SubResource("Animation_wb77v")
+"RESET": SubResource("Animation_i7rao"),
+"review": SubResource("Animation_wb77v")
 }
 
 [node name="TittleScreen" type="Control"]
@@ -162,7 +162,7 @@ flip_h = true
 
 [node name="animation" type="AnimationPlayer" parent="."]
 libraries = {
-&"": SubResource("AnimationLibrary_we8ok")
+"": SubResource("AnimationLibrary_we8ok")
 }
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/START-BTN" to="." method="_on_startbtn_pressed"]

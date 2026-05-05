@@ -9,4 +9,4 @@ func _ready() -> void:
 		musica.play()
 
 func _on_botao_pressed() -> void:
-	get_tree().change_scene_to_file("res://scenes/instruction_screen.tscn")
+	get_tree().change_scene_to_file("res://prefabs/tittle_screen.tscn")
