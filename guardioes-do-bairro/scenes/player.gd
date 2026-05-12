@@ -9,17 +9,19 @@ const PULO_DURACAO := 0.4
 var vidas: int = 3
 var invulneravel: bool = false
 var pulando: bool = false
-var inventario: Array[int] = []
+var inventario: Array[Dictionary] = []
 var ultima_direcao: String = "down"
 var tween_piscar: Tween
+var coletavel_proximo: Node = null
+var lixeira_proxima: Node = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer_invulneravel: Timer = $InvulnerabilidadeTimer
 
 signal vida_alterada(vidas_atuais: int)
 signal morreu
-signal lixo_coletado(tipo: int)
-signal descarte_feito(tipo: int, acertou: bool)
+signal lixo_coletado(tipo: int, textura: Texture2D)
+signal descarte_feito(tipo: int, textura: Texture2D, acertou: bool)
 
 func _ready() -> void:
 	add_to_group("player")
@@ -33,8 +35,17 @@ func _physics_process(_delta: float) -> void:
 	velocity = direcao * VELOCIDADE
 	if Input.is_action_just_pressed("ui_accept") and not pulando:
 		_pular()
+	if Input.is_action_just_pressed("interagir"):
+		_interagir()
 	move_and_slide()
 	_atualizar_animacao()
+
+func _interagir() -> void:
+	if coletavel_proximo and is_instance_valid(coletavel_proximo):
+		coletavel_proximo.coletar()
+		return
+	if lixeira_proxima and is_instance_valid(lixeira_proxima):
+		lixeira_proxima.depositar(self)
 
 func _atualizar_animacao() -> void:
 	var movendo := velocity.length() > 0.0
@@ -76,16 +87,18 @@ func receber_dano(quantidade: int) -> void:
 	_piscar()
 
 func descartar_lixo(tipo_aceito: int) -> bool:
-	var idx := inventario.find(tipo_aceito)
-	if idx == -1:
-		return false
-	inventario.remove_at(idx)
-	descarte_feito.emit(tipo_aceito, true)
-	return true
+	for i in inventario.size():
+		if inventario[i].tipo == tipo_aceito:
+			var textura: Texture2D = inventario[i].textura
+			inventario.remove_at(i)
+			descarte_feito.emit(tipo_aceito, textura, true)
+			return true
+	descarte_feito.emit(tipo_aceito, null, false)
+	return false
 
-func adicionar_lixo(tipo: int) -> void:
-	inventario.append(tipo)
-	lixo_coletado.emit(tipo)
+func adicionar_lixo(tipo: int, textura: Texture2D) -> void:
+	inventario.append({"tipo": tipo, "textura": textura})
+	lixo_coletado.emit(tipo, textura)
 
 func _fim_invulnerabilidade() -> void:
 	if not pulando:
@@ -100,7 +113,7 @@ func _piscar() -> void:
 	tween_piscar.tween_property(sprite, "modulate:a", 1.0, 0.1)
 
 
-func _on_descarte_feito(tipo: int, acertou: bool) -> void:
+func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:
 	pass
 
 
@@ -108,7 +121,7 @@ func _on_morreu() -> void:
 	pass
 
 
-func _on_lixo_coletado(tipo: int) -> void:
+func _on_lixo_coletado(tipo: int, textura: Texture2D) -> void:
 	pass
 
 

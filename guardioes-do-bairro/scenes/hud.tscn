@@ -38,24 +38,9 @@ layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
-offset_top = -40.0
-offset_right = 40.0
+offset_top = -60.0
+offset_right = 400.0
 grow_vertical = 0
-
-[node name="TextureRect" type="TextureRect" parent="Control/Inventario" unique_id=592249433]
-layout_mode = 2
-
-[node name="TextureRect2" type="TextureRect" parent="Control/Inventario" unique_id=36278192]
-layout_mode = 2
-
-[node name="TextureRect3" type="TextureRect" parent="Control/Inventario" unique_id=973425037]
-layout_mode = 2
-
-[node name="TextureRect4" type="TextureRect" parent="Control/Inventario" unique_id=1472291812]
-layout_mode = 2
-
-[node name="TextureRect5" type="TextureRect" parent="Control/Inventario" unique_id=1486419190]
-layout_mode = 2
 
 [node name="Vidas" type="HBoxContainer" parent="Control" unique_id=1694471273]
 layout_mode = 1

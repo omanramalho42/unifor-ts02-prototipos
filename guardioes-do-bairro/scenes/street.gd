@@ -54,17 +54,17 @@ func _on_vida_alterada(vidas_atuais: int) -> void:
 	if hud.has_method("atualizar_vidas"):
 		hud.atualizar_vidas(vidas_atuais)
 
-func _on_lixo_coletado(tipo: int) -> void:
+func _on_lixo_coletado(tipo: int, textura: Texture2D) -> void:
 	if hud.has_method("atualizar_inventario"):
-		hud.atualizar_inventario(tipo)
+		hud.atualizar_inventario(tipo, textura)
 
-func _on_descarte_feito(tipo: int, acertou: bool) -> void:
+func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:
 	if acertou:
 		pontos += 100
 		if hud.has_method("atualizar_pontuacao"):
 			hud.atualizar_pontuacao(pontos)
 		if hud.has_method("remover_inventario"):
-			hud.remover_inventario(tipo)
+			hud.remover_inventario(tipo, textura)
 
 func _on_player_morreu() -> void:
 	_terminar_fase(false)
