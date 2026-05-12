@@ -1,14 +1,14 @@
 [gd_scene load_steps=13 format=3 uid="uid://cn40nb1bg06rs"]
 
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_tr5t1"]
-[ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
+[ext_resource type="Script" path="res://scenes/street.gd" id="1_yrasx"]
 [ext_resource type="PackedScene" uid="uid://bnx5d5uswai4m" path="res://scenes/player.tscn" id="2_3ffmx"]
 [ext_resource type="PackedScene" uid="uid://cvx7kennjbu3v" path="res://scenes/hud.tscn" id="3_t23v0"]
-[ext_resource type="Script" uid="uid://cf625bi22qkev" path="res://scenes/damage_area.gd" id="4_yrasx"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="4_yrasx"]
 [ext_resource type="PackedScene" uid="uid://65glxtwei64a" path="res://scenes/obstacle.tscn" id="6_7vr8w"]
 [ext_resource type="Texture2D" uid="uid://b048epmvet1s2" path="res://assets/collectible/banana-peel.png" id="7_5m0si"]
 [ext_resource type="Texture2D" uid="uid://dlqf8m3irhrdj" path="res://assets/obstacle/Gemini_Generated_Image_7zlsyv7zlsyv7zls.png" id="8_5m0si"]
-[ext_resource type="PackedScene" uid="uid://c87auhtj6mb83" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
 
 [sub_resource type="GDScript" id="GDScript_t23v0"]
 script/source = "extends Sprite2D
@@ -37,21 +37,21 @@ script = ExtResource("1_yrasx")
 metadata/_edit_horizontal_guides_ = [320.0]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.8385417, 0.8385417)
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
-position = Vector2(1153, 1.9073486e-06)
-scale = Vector2(0.8385417, 0.8385417)
+position = Vector2(1153, 1.90735e-06)
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
 [node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(2307, 0)
-scale = Vector2(0.8385417, 0.8385417)
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
@@ -98,8 +98,9 @@ scale = Vector2(1.2, 1.2)
 textura = ExtResource("7_5m0si")
 
 [node name="Obstacle2" parent="Obstaculos" instance=ExtResource("6_7vr8w")]
-position = Vector2(-1956.6666, -119.99997)
+position = Vector2(-1956.67, -120)
 scale = Vector2(3.2, 3.2)
 textura = ExtResource("8_5m0si")
 
 [node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
+process_mode = 3

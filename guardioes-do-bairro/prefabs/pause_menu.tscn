@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://c87auhtj6mb83"]
+[gd_scene load_steps=3 format=3 uid="uid://bnn71athyx3nb"]
 
-[ext_resource type="Theme" uid="uid://bbx6j7heb6h4l" path="res://pause_menu.tres" id="1_hf53u"]
-[ext_resource type="Script" uid="uid://fvndbgofpe84" path="res://prefabs/pause_menu.gd" id="1_iyb4f"]
+[ext_resource type="Theme" path="res://pause_menu.tres" id="1_hf53u"]
+[ext_resource type="Script" path="res://prefabs/pause_menu.gd" id="1_iyb4f"]
 
 [node name="pause_menu" type="CanvasLayer"]
+process_mode = 4
 script = ExtResource("1_iyb4f")
 
 [node name="bg_overlay" type="ColorRect" parent="."]
@@ -12,7 +13,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.25490198)
+color = Color(0, 0, 0, 0.254902)
 
 [node name="menu_holder" type="VBoxContainer" parent="."]
 anchors_preset = 14
@@ -33,3 +34,6 @@ text = "RESUMO"
 layout_mode = 2
 theme = ExtResource("1_hf53u")
 text = "SAIR"
+
+[connection signal="pressed" from="menu_holder/pause_btn" to="." method="_on_pause_btn_pressed"]
+[connection signal="pressed" from="menu_holder/quit_btn" to="." method="_on_quit_btn_pressed"]

@@ -10,7 +10,7 @@ func _process(delta) -> void:
 
 func _on_pause_btn_pressed() -> void:
 	get_tree().paused = false
-	visible = true
+	visible = false
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
