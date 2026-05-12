@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://da22jbi4ybrrg"
-path="res://.godot/imported/de_lado__esq__3-removebg-preview.png-9eb19e5b3c7a4d1ddb059906e2b93cdb.ctex"
+uid="uid://cb08m3s10ek0b"
+path="res://.godot/imported/de_frente_2.png-2d674ff8b27d7f612453b46a0b6d196a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/personagem/de_lado__esq__3-removebg-preview.png"
-dest_files=["res://.godot/imported/de_lado__esq__3-removebg-preview.png-9eb19e5b3c7a4d1ddb059906e2b93cdb.ctex"]
+source_file="res://assets/personagem/de_frente_2.png"
+dest_files=["res://.godot/imported/de_frente_2.png-2d674ff8b27d7f612453b46a0b6d196a.ctex"]
 
 [params]
 

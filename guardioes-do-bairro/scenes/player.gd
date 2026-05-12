@@ -11,6 +11,7 @@ var invulneravel: bool = false
 var pulando: bool = false
 var inventario: Array[int] = []
 var ultima_direcao: String = "down"
+var tween_piscar: Tween
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer_invulneravel: Timer = $InvulnerabilidadeTimer
@@ -92,9 +93,11 @@ func _fim_invulnerabilidade() -> void:
 	sprite.modulate.a = 1.0
 
 func _piscar() -> void:
-	var tween := create_tween().set_loops(5)
-	tween.tween_property(sprite, "modulate:a", 0.3, 0.1)
-	tween.tween_property(sprite, "modulate:a", 1.0, 0.1)
+	if tween_piscar and tween_piscar.is_valid():
+		tween_piscar.kill()
+	tween_piscar = create_tween().set_loops(5)
+	tween_piscar.tween_property(sprite, "modulate:a", 0.3, 0.1)
+	tween_piscar.tween_property(sprite, "modulate:a", 1.0, 0.1)
 
 
 func _on_descarte_feito(tipo: int, acertou: bool) -> void:
