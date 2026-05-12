@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://c87auhtj6mb83"]
+
+[ext_resource type="Theme" uid="uid://bbx6j7heb6h4l" path="res://pause_menu.tres" id="1_hf53u"]
+[ext_resource type="Script" uid="uid://fvndbgofpe84" path="res://prefabs/pause_menu.gd" id="1_iyb4f"]
+
+[node name="pause_menu" type="CanvasLayer"]
+script = ExtResource("1_iyb4f")
+
+[node name="bg_overlay" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.25490198)
+
+[node name="menu_holder" type="VBoxContainer" parent="."]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -33.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="pause_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("1_hf53u")
+text = "RESUMO"
+
+[node name="quit_btn" type="Button" parent="menu_holder"]
+layout_mode = 2
+theme = ExtResource("1_hf53u")
+text = "SAIR"
