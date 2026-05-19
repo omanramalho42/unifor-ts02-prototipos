@@ -1,11 +1,14 @@
-[gd_scene format=3 uid="uid://cn40nb1bg06rs"]
+[gd_scene load_steps=13 format=3 uid="uid://cn40nb1bg06rs"]
 
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_tr5t1"]
-[ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
+[ext_resource type="Script" path="res://scenes/street.gd" id="1_yrasx"]
 [ext_resource type="PackedScene" uid="uid://bnx5d5uswai4m" path="res://scenes/player.tscn" id="2_3ffmx"]
 [ext_resource type="PackedScene" uid="uid://cvx7kennjbu3v" path="res://scenes/hud.tscn" id="3_t23v0"]
-[ext_resource type="Script" uid="uid://cf625bi22qkev" path="res://scenes/damage_area.gd" id="4_yrasx"]
+[ext_resource type="Script" path="res://scenes/damage_area.gd" id="4_yrasx"]
 [ext_resource type="PackedScene" uid="uid://65glxtwei64a" path="res://scenes/obstacle.tscn" id="6_7vr8w"]
+[ext_resource type="Texture2D" uid="uid://b048epmvet1s2" path="res://assets/collectible/banana-peel.png" id="7_5m0si"]
+[ext_resource type="Texture2D" uid="uid://dlqf8m3irhrdj" path="res://assets/obstacle/Gemini_Generated_Image_7zlsyv7zlsyv7zls.png" id="8_5m0si"]
+[ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://bscf110ggdohb" path="res://assets/obstacle/Gemini_Generated_Image_oa21usoa21usoa21.png" id="8_5m0si"]
 [ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://x3yb3rvtl0yn" path="res://assets/collectible/can-1.png" id="9_cotsb"]
@@ -33,66 +36,78 @@ b = Vector2(-6.5, 443)
 a = Vector2(-860, -3)
 b = Vector2(1900, 7)
 
-[node name="Street" type="Node2D" unique_id=2069552500]
+[node name="Street" type="Node2D"]
 script = ExtResource("1_yrasx")
 metadata/_edit_horizontal_guides_ = [320.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1526574870]
-scale = Vector2(0.8385417, 0.8385417)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=1935162043]
-position = Vector2(1153, 1.9073486e-06)
-scale = Vector2(0.8385417, 0.8385417)
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(1153, 1.90735e-06)
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=566994125]
+[node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(2307, 0)
-scale = Vector2(0.8385417, 0.8385417)
+scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Player" parent="." unique_id=1787145465 instance=ExtResource("2_3ffmx")]
+[node name="Player" parent="." instance=ExtResource("2_3ffmx")]
 position = Vector2(53, 433)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=97365126]
+[node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="HUD" parent="." unique_id=1040846964 instance=ExtResource("3_t23v0")]
+[node name="HUD" parent="." instance=ExtResource("3_t23v0")]
 
-[node name="DamageArea" type="Area2D" parent="." unique_id=1773741218]
+[node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-5, 328)
 script = ExtResource("4_yrasx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=373366801]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(-2, 1)
 shape = SubResource("SegmentShape2D_yrasx")
 
-[node name="Timer" type="Timer" parent="DamageArea" unique_id=1939589790]
+[node name="Timer" type="Timer" parent="DamageArea"]
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1884749587]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(192, 642)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=1010268763]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1550971507]
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(663, 248)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=2050380529]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(3, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="Obstaculos" type="Node2D" parent="." unique_id=1700000001]
+[node name="Obstaculos" type="Node2D" parent="."]
 position = Vector2(1066, 380)
 scale = Vector2(0.3, 0.3)
 
+[node name="Obstacle" parent="Obstaculos" instance=ExtResource("6_7vr8w")]
+position = Vector2(-1390, 710)
+scale = Vector2(1.2, 1.2)
+textura = ExtResource("7_5m0si")
+
+[node name="Obstacle2" parent="Obstaculos" instance=ExtResource("6_7vr8w")]
+position = Vector2(-1956.67, -120)
+scale = Vector2(3.2, 3.2)
+textura = ExtResource("8_5m0si")
+
+[node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
+process_mode = 3
 [node name="Obstacle2" parent="Obstaculos" unique_id=291806062 instance=ExtResource("6_7vr8w")]
 position = Vector2(-1956.6666, -119.99997)
 scale = Vector2(2, 2)
