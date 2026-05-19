@@ -9,6 +9,10 @@
 [ext_resource type="Texture2D" uid="uid://b048epmvet1s2" path="res://assets/collectible/banana-peel.png" id="7_5m0si"]
 [ext_resource type="Texture2D" uid="uid://dlqf8m3irhrdj" path="res://assets/obstacle/Gemini_Generated_Image_7zlsyv7zlsyv7zls.png" id="8_5m0si"]
 [ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="Texture2D" uid="uid://bscf110ggdohb" path="res://assets/obstacle/Gemini_Generated_Image_oa21usoa21usoa21.png" id="8_5m0si"]
+[ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
+[ext_resource type="Texture2D" uid="uid://x3yb3rvtl0yn" path="res://assets/collectible/can-1.png" id="9_cotsb"]
+[ext_resource type="Texture2D" uid="uid://ds00fb6c0job8" path="res://assets/collectible/can-2.png" id="10_nokxu"]
 
 [sub_resource type="GDScript" id="GDScript_t23v0"]
 script/source = "extends Sprite2D
@@ -104,3 +108,19 @@ textura = ExtResource("8_5m0si")
 
 [node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
 process_mode = 3
+[node name="Obstacle2" parent="Obstaculos" unique_id=291806062 instance=ExtResource("6_7vr8w")]
+position = Vector2(-1956.6666, -119.99997)
+scale = Vector2(2, 2)
+textura = ExtResource("8_5m0si")
+
+[node name="Coletaveis" type="Node2D" parent="." unique_id=358812442]
+
+[node name="Collectible2" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
+position = Vector2(841, 301)
+tipo = 1
+textura = ExtResource("9_cotsb")
+
+[node name="Collectible" parent="Coletaveis" unique_id=1163463605 instance=ExtResource("8_dxpu0")]
+position = Vector2(363, 542)
+tipo = 1
+textura = ExtResource("10_nokxu")

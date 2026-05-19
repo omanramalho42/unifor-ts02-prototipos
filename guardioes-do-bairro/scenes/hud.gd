@@ -5,9 +5,10 @@ extends CanvasLayer
 @onready var inventario: HBoxContainer = $Control/Inventario
 @onready var vidas: HBoxContainer = $Control/Vidas
 
-# Conta quantos itens de cada tipo o player tem
-# Índices: 0=PAPEL, 1=METAL, 2=PLASTICO, 3=VIDRO, 4=ORGANICO
-var contagem_inventario: Array[int] = [0, 0, 0, 0, 0]
+const TAMANHO_SLOT := Vector2(48, 48)
+
+# Texture2D → { "slot": Control, "contagem": int }
+var slots: Dictionary = {}
 
 func atualizar_vidas(quantidade: int) -> void:
 	for i in vidas.get_child_count():
@@ -23,25 +24,43 @@ func atualizar_cronometro(segundos: float) -> void:
 	var segs := int(segundos) % 60
 	cronometro.text = "%02d:%02d" % [minutos, segs]
 
-func atualizar_inventario(tipo: int) -> void:
-	if tipo < 0 or tipo >= contagem_inventario.size():
+func atualizar_inventario(_tipo: int, textura: Texture2D) -> void:
+	if not textura:
 		return
-	contagem_inventario[tipo] += 1
-	_refresh_slot(tipo)
-
-func remover_inventario(tipo: int) -> void:
-	if tipo < 0 or tipo >= contagem_inventario.size():
-		return
-	contagem_inventario[tipo] = max(0, contagem_inventario[tipo] - 1)
-	_refresh_slot(tipo)
-
-func _refresh_slot(tipo: int) -> void:
-	if tipo >= inventario.get_child_count():
-		return
-	var slot := inventario.get_child(tipo) as CanvasItem
-	if not slot:
-		return
-	if contagem_inventario[tipo] > 0:
-		slot.modulate = Color.WHITE
+	if slots.has(textura):
+		slots[textura].contagem += 1
+		_atualizar_label(textura)
 	else:
-		slot.modulate = Color(1, 1, 1, 0.3)
+		var slot := _criar_slot(textura)
+		inventario.add_child(slot)
+		slots[textura] = {"slot": slot, "contagem": 1}
+		_atualizar_label(textura)
+
+func remover_inventario(_tipo: int, textura: Texture2D) -> void:
+	if not slots.has(textura):
+		return
+	slots[textura].contagem -= 1
+	if slots[textura].contagem <= 0:
+		slots[textura].slot.queue_free()
+		slots.erase(textura)
+	else:
+		_atualizar_label(textura)
+
+func _criar_slot(textura: Texture2D) -> Control:
+	var box := VBoxContainer.new()
+	box.custom_minimum_size = TAMANHO_SLOT
+	var rect := TextureRect.new()
+	rect.texture = textura
+	rect.custom_minimum_size = TAMANHO_SLOT
+	rect.expand_mode = TextureRect.EXPAND_FIT_WIDTH_PROPORTIONAL
+	rect.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	box.add_child(rect)
+	var label := Label.new()
+	label.name = "Contagem"
+	box.add_child(label)
+	return box
+
+func _atualizar_label(textura: Texture2D) -> void:
+	var box: Control = slots[textura].slot
+	var label := box.get_node("Contagem") as Label
+	label.text = "x%d" % slots[textura].contagem
