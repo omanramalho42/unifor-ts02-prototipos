@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb1wdoif00q6b"
+path="res://.godot/imported/Ardie Son - Venture.mp3-4dd8b391af7bd5a11d00287b572240a7.mp3str"
+
+[deps]
+
+source_file="res://assets/songs/Ardie Son - Venture.mp3"
+dest_files=["res://.godot/imported/Ardie Son - Venture.mp3-4dd8b391af7bd5a11d00287b572240a7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

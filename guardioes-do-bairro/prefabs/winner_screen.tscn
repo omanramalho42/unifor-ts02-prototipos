@@ -1,12 +1,18 @@
 [gd_scene load_steps=10 format=3 uid="uid://dj7ldybhfco5v"]
 
 [ext_resource type="Script" uid="uid://cl26w2pa5i6w5" path="res://prefabs/winner_screen.gd" id="1_72kx7"]
-[ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_j4r87"]
+[ext_resource type="Texture2D" uid="uid://cy7y38v1t0eh0" path="res://assets/bg.png" id="2_72kx7"]
 [ext_resource type="Texture2D" uid="uid://bdnokbvmqkou4" path="res://assets/Gemini_Generated_Image_rh5unsrh5unsrh5u-removebg-preview.png" id="2_j4r87"]
 [ext_resource type="Theme" uid="uid://bhv00vxf42ptf" path="res://default_btn.tres" id="3_dmrxq"]
 [ext_resource type="Texture2D" uid="uid://bs2kyv01o8ki7" path="res://assets/diagonal_direita-removebg-preview.png" id="4_gyuig"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v1d68"]
+resource_local_to_scene = false
+resource_name = ""
+content_margin_left = -1.0
+content_margin_top = -1.0
+content_margin_right = -1.0
+content_margin_bottom = -1.0
 
 [sub_resource type="Animation" id="Animation_i7rao"]
 length = 0.001
@@ -106,7 +112,7 @@ script = ExtResource("1_72kx7")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
-texture = ExtResource("1_j4r87")
+texture = ExtResource("2_72kx7")
 expand_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
