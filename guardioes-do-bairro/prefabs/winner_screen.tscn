@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dj7ldybhfco5v"]
+[gd_scene format=3 uid="uid://dj7ldybhfco5v"]
 
 [ext_resource type="Script" uid="uid://cl26w2pa5i6w5" path="res://prefabs/winner_screen.gd" id="1_72kx7"]
 [ext_resource type="Texture2D" uid="uid://cy7y38v1t0eh0" path="res://assets/bg.png" id="2_72kx7"]

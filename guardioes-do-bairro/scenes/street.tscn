@@ -1,15 +1,26 @@
-[gd_scene load_steps=14 format=3 uid="uid://cn40nb1bg06rs"]
+[gd_scene format=3 uid="uid://cn40nb1bg06rs"]
 
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_tr5t1"]
 [ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
+[ext_resource type="Texture2D" uid="uid://cb6okm0atkkw0" path="res://assets/ambiente/fase_transition.png" id="2_1fhj6"]
 [ext_resource type="PackedScene" uid="uid://bnx5d5uswai4m" path="res://scenes/player.tscn" id="2_3ffmx"]
+[ext_resource type="Texture2D" uid="uid://8chfnmg5epih" path="res://assets/ambiente/fase_02.01.png" id="3_6epoj"]
 [ext_resource type="PackedScene" uid="uid://cvx7kennjbu3v" path="res://scenes/hud.tscn" id="3_t23v0"]
+[ext_resource type="Texture2D" uid="uid://dof2y8oyckpd" path="res://assets/ambiente/fase_02.02.png" id="4_582hs"]
 [ext_resource type="Script" uid="uid://cf625bi22qkev" path="res://scenes/damage_area.gd" id="4_yrasx"]
+[ext_resource type="Texture2D" uid="uid://c4e765s7v75l7" path="res://assets/ambiente/fase_01.02.png" id="6_582hs"]
+[ext_resource type="Texture2D" uid="uid://dmi6toir8rre" path="res://assets/ambiente/fase_01.03.png" id="7_5turb"]
 [ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
-[ext_resource type="Texture2D" uid="uid://x3yb3rvtl0yn" path="res://assets/collectible/can-1.png" id="9_cotsb"]
-[ext_resource type="PackedScene" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="Texture2D" uid="uid://c4cp3kqmnhars" path="res://assets/collectible/casca_de_banana.png" id="8_nokxu"]
+[ext_resource type="Texture2D" uid="uid://cebtt3wtj6bbq" path="res://assets/collectible/latinha.png" id="9_7vla3"]
+[ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="Texture2D" uid="uid://cqftce7wdsd4n" path="res://assets/collectible/latinha_4.png" id="10_0wd0x"]
 [ext_resource type="AudioStream" uid="uid://bb1wdoif00q6b" path="res://assets/songs/Ardie Son - Venture.mp3" id="10_cotsb"]
-[ext_resource type="Texture2D" uid="uid://ds00fb6c0job8" path="res://assets/collectible/can-2.png" id="10_nokxu"]
+[ext_resource type="PackedScene" uid="uid://5rmu1xot5hvp" path="res://scenes/trash_bin.tscn" id="12_7gyev"]
+[ext_resource type="Texture2D" uid="uid://8dp7mbfpm514" path="res://assets/collectible/lixo_papel.png" id="13_1x85o"]
+[ext_resource type="Texture2D" uid="uid://cwfr0cuy5pq56" path="res://assets/collectible/lixo_metal.png" id="14_0otry"]
+[ext_resource type="Texture2D" uid="uid://dslm2sg3ew6hs" path="res://assets/collectible/lixo_plastico.png" id="15_1fhj6"]
+[ext_resource type="Texture2D" uid="uid://4is5m0blbxgp" path="res://assets/collectible/lixo_vidro.png" id="16_6epoj"]
 
 [sub_resource type="GDScript" id="GDScript_t23v0"]
 script/source = "extends Sprite2D
@@ -33,75 +44,122 @@ b = Vector2(-6.5, 443)
 a = Vector2(-860, -3)
 b = Vector2(1900, 7)
 
-[node name="Street" type="Node2D"]
+[node name="Street" type="Node2D" unique_id=1342912381]
 script = ExtResource("1_yrasx")
 metadata/_edit_horizontal_guides_ = [320.0]
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1372297279]
+position = Vector2(3144.7046, 2.3841858e-06)
+scale = Vector2(0.8385416, 0.83854175)
+texture = ExtResource("2_1fhj6")
+centered = false
+script = SubResource("GDScript_t23v0")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=851609953]
+position = Vector2(4297.792, 1.0728836e-06)
+scale = Vector2(0.83854157, 0.8385417)
+texture = ExtResource("3_6epoj")
+centered = false
+script = SubResource("GDScript_t23v0")
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1933927690]
+position = Vector2(5450.7056, 1.19209275e-07)
+scale = Vector2(0.8385415, 0.83854157)
+texture = ExtResource("4_582hs")
+centered = false
+script = SubResource("GDScript_t23v0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=230367238]
 scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=957400741]
 position = Vector2(1153, 1.90735e-06)
 scale = Vector2(0.838542, 0.838542)
-texture = ExtResource("1_tr5t1")
+texture = ExtResource("6_582hs")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D3" type="Sprite2D" parent="."]
-position = Vector2(2307, 0)
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=282481433]
+position = Vector2(1991.0001, 0)
 scale = Vector2(0.838542, 0.838542)
-texture = ExtResource("1_tr5t1")
+texture = ExtResource("7_5turb")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Player" parent="." instance=ExtResource("2_3ffmx")]
+[node name="Player" parent="." unique_id=1793131214 instance=ExtResource("2_3ffmx")]
 position = Vector2(53, 433)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=64489674]
 anchor_mode = 0
 
-[node name="HUD" parent="." instance=ExtResource("3_t23v0")]
+[node name="HUD" parent="." unique_id=1240383009 instance=ExtResource("3_t23v0")]
 
-[node name="DamageArea" type="Area2D" parent="."]
+[node name="DamageArea" type="Area2D" parent="." unique_id=908039435]
 position = Vector2(-5, 328)
 script = ExtResource("4_yrasx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1842691928]
 position = Vector2(-2, 1)
 shape = SubResource("SegmentShape2D_yrasx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=114767473]
 position = Vector2(192, 642)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=891209010]
 position = Vector2(0, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1043457588]
 position = Vector2(663, 248)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1258559510]
 position = Vector2(3, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
+[node name="pause_menu" parent="." unique_id=963070783 instance=ExtResource("9_dxpu0")]
 process_mode = 3
 
-[node name="Coletaveis" type="Node2D" parent="."]
+[node name="Coletaveis" type="Node2D" parent="." unique_id=11718119]
 
-[node name="Collectible2" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
+[node name="Collectible3" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
+position = Vector2(721, 556)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Collectible2" parent="Coletaveis" unique_id=1240519143 instance=ExtResource("8_dxpu0")]
 position = Vector2(841, 301)
 tipo = 1
-textura = ExtResource("9_cotsb")
+textura = ExtResource("9_7vla3")
 
-[node name="Collectible" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
+[node name="Collectible" parent="Coletaveis" unique_id=171203271 instance=ExtResource("8_dxpu0")]
 position = Vector2(363, 542)
 tipo = 1
-textura = ExtResource("10_nokxu")
+textura = ExtResource("10_0wd0x")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1295284920]
 stream = ExtResource("10_cotsb")
 autoplay = true
+
+[node name="Lixeiras" type="Node2D" parent="." unique_id=310174826]
+
+[node name="TrashBin3" parent="Lixeiras" unique_id=615893720 instance=ExtResource("12_7gyev")]
+position = Vector2(3047, 363)
+textura = ExtResource("13_1x85o")
+
+[node name="TrashBin" parent="Lixeiras" unique_id=533215531 instance=ExtResource("12_7gyev")]
+position = Vector2(3297, 358)
+tipo = 1
+textura = ExtResource("14_0otry")
+
+[node name="TrashBin2" parent="Lixeiras" unique_id=413299763 instance=ExtResource("12_7gyev")]
+position = Vector2(2894, 352)
+tipo = 2
+textura = ExtResource("15_1fhj6")
+
+[node name="TrashBin4" parent="Lixeiras" unique_id=1190383998 instance=ExtResource("12_7gyev")]
+position = Vector2(3165, 359)
+tipo = 3
+textura = ExtResource("16_6epoj")

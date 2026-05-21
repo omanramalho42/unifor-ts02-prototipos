@@ -31,9 +31,6 @@ func _physics_process(_delta: float) -> void:
 func _interagir() -> void:
 	if coletavel_proximo and is_instance_valid(coletavel_proximo):
 		coletavel_proximo.coletar()
-		return
-	if lixeira_proxima and is_instance_valid(lixeira_proxima):
-		lixeira_proxima.depositar(self)
 
 func _atualizar_animacao() -> void:
 	var movendo := velocity.length() > 0.0
@@ -72,6 +69,12 @@ func descartar_lixo(tipo_aceito: int) -> bool:
 func adicionar_lixo(tipo: int, textura: Texture2D) -> void:
 	inventario.append({"tipo": tipo, "textura": textura})
 	lixo_coletado.emit(tipo, textura)
+
+func proxima_textura_descartavel(tipo_aceito: int) -> Texture2D:
+	for item in inventario:
+		if item.tipo == tipo_aceito:
+			return item.textura
+	return null
 
 
 func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:

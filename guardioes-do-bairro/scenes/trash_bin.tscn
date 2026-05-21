@@ -2,19 +2,24 @@
 
 [ext_resource type="Script" uid="uid://dqdhfk4owgc5n" path="res://scenes/trash_bin.gd" id="1_6ftrw"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bin1"]
+size = Vector2(96, 96)
+
 [node name="TrashBin" type="Area2D" unique_id=615893720]
 script = ExtResource("1_6ftrw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1263848153]
+scale = Vector2(0.1, 0.1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1234616243]
+shape = SubResource("RectangleShape2D_bin1")
 
 [node name="Prompt" type="Label" parent="." unique_id=1234616244]
 offset_left = -12.0
 offset_top = -70.0
 offset_right = 28.0
 offset_bottom = -47.0
-text = "[F]"
 theme_override_font_sizes/font_size = 16
+text = "[F]"
 
 [connection signal="lixo_depositado" from="." to="." method="_on_lixo_depositado"]

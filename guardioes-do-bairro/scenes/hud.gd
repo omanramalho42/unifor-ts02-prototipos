@@ -51,9 +51,36 @@ func _criar_slot(textura: Texture2D) -> Control:
 	var label := Label.new()
 	label.name = "Contagem"
 	box.add_child(label)
+	var barra := ProgressBar.new()
+	barra.name = "Barra"
+	barra.custom_minimum_size = Vector2(48, 6)
+	barra.min_value = 0.0
+	barra.max_value = 1.0
+	barra.step = 0.01
+	barra.show_percentage = false
+	barra.visible = false
+	box.add_child(barra)
 	return box
 
 func _atualizar_label(textura: Texture2D) -> void:
 	var box: Control = slots[textura].slot
 	var label := box.get_node("Contagem") as Label
 	label.text = "x%d" % slots[textura].contagem
+
+func atualizar_progresso_descarte(textura: Texture2D, fracao: float) -> void:
+	if not textura or not slots.has(textura):
+		return
+	var barra := slots[textura].slot.get_node_or_null("Barra") as ProgressBar
+	if not barra:
+		return
+	barra.value = fracao
+	barra.visible = true
+
+func esconder_barra_descarte(textura: Texture2D) -> void:
+	if not textura or not slots.has(textura):
+		return
+	var barra := slots[textura].slot.get_node_or_null("Barra") as ProgressBar
+	if not barra:
+		return
+	barra.value = 0.0
+	barra.visible = false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://ck7w1ih8vlexq"]
+[gd_scene format=3 uid="uid://ck7w1ih8vlexq"]
 
 [ext_resource type="Script" uid="uid://q55s1t3d4q7e" path="res://prefabs/loading.gd" id="1_5jylu"]
 
