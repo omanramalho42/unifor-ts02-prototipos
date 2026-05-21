@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck7w1ih8vlexq"]
+
+[ext_resource type="Script" uid="uid://q55s1t3d4q7e" path="res://prefabs/loading.gd" id="1_5jylu"]
+
+[node name="loading" type="Node2D"]
+script = ExtResource("1_5jylu")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 340.0
+offset_top = 250.0
+offset_right = 840.0
+offset_bottom = 277.0
+grow_horizontal = 2
+grow_vertical = 2

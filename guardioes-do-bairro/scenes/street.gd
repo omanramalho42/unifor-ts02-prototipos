@@ -67,5 +67,5 @@ func _terminar_fase(venceu: bool) -> void:
 	fase_terminou = true
 	GameState.tempo_final = tempo
 	GameState.pontos_finais = pontos
-	var destino := "res://scenes/win_screen.tscn" if venceu else "res://scenes/lose_screen.tscn"
+	var destino := "res://prefabs/winner_screen.tscn" if venceu else "res://prefabs/game_over.tscn"
 	get_tree().change_scene_to_file(destino)
