@@ -16,8 +16,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 config/name="guardioes_do_bairro"
 run/main_scene="res://prefabs/tittle_screen.tscn"
-config/features=PackedStringArray("4.5", "Forward Plus")
-config/features=PackedStringArray("4.3", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]

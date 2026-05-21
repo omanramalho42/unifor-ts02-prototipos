@@ -125,9 +125,5 @@ shape = SubResource("RectangleShape2D_dqkch")
 position = Vector2(0.5, -2.25)
 shape = SubResource("RectangleShape2D_g2els")
 
-[node name="InvulnerabilidadeTimer" type="Timer" parent="." unique_id=1962790556]
-
 [connection signal="descarte_feito" from="." to="." method="_on_descarte_feito"]
 [connection signal="lixo_coletado" from="." to="." method="_on_lixo_coletado"]
-[connection signal="morreu" from="." to="." method="_on_morreu"]
-[connection signal="vida_alterada" from="." to="." method="_on_vida_alterada"]

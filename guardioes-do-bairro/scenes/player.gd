@@ -4,31 +4,19 @@ const VELOCIDADE := 180.0
 const PULO_ALTURA := 16.0
 const PULO_DURACAO := 0.4
 
-@export var vidas_max: int = 3
-
-var vidas: int = 3
-var invulneravel: bool = false
 var pulando: bool = false
 var inventario: Array[Dictionary] = []
 var ultima_direcao: String = "down"
-var tween_piscar: Tween
 var coletavel_proximo: Node = null
 var lixeira_proxima: Node = null
 
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
-@onready var timer_invulneravel: Timer = $InvulnerabilidadeTimer
 
-signal vida_alterada(vidas_atuais: int)
-signal morreu
 signal lixo_coletado(tipo: int, textura: Texture2D)
 signal descarte_feito(tipo: int, textura: Texture2D, acertou: bool)
 
 func _ready() -> void:
 	add_to_group("player")
-	vidas = vidas_max
-	timer_invulneravel.one_shot = true
-	timer_invulneravel.wait_time = 1.0
-	timer_invulneravel.timeout.connect(_fim_invulnerabilidade)
 
 func _physics_process(_delta: float) -> void:
 	var direcao := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
@@ -60,7 +48,6 @@ func _atualizar_animacao() -> void:
 
 func _pular() -> void:
 	pulando = true
-	invulneravel = true
 	var y_inicial := sprite.position.y
 	var tween := create_tween()
 	tween.tween_property(sprite, "position:y", y_inicial - PULO_ALTURA, PULO_DURACAO / 2.0)\
@@ -71,20 +58,6 @@ func _pular() -> void:
 
 func _fim_pulo() -> void:
 	pulando = false
-	if not timer_invulneravel.time_left > 0:
-		invulneravel = false
-
-func receber_dano(quantidade: int) -> void:
-	if invulneravel:
-		return
-	vidas -= quantidade
-	vida_alterada.emit(vidas)
-	if vidas <= 0:
-		morreu.emit()
-		return
-	invulneravel = true
-	timer_invulneravel.start()
-	_piscar()
 
 func descartar_lixo(tipo_aceito: int) -> bool:
 	for i in inventario.size():
@@ -100,30 +73,10 @@ func adicionar_lixo(tipo: int, textura: Texture2D) -> void:
 	inventario.append({"tipo": tipo, "textura": textura})
 	lixo_coletado.emit(tipo, textura)
 
-func _fim_invulnerabilidade() -> void:
-	if not pulando:
-		invulneravel = false
-	sprite.modulate.a = 1.0
-
-func _piscar() -> void:
-	if tween_piscar and tween_piscar.is_valid():
-		tween_piscar.kill()
-	tween_piscar = create_tween().set_loops(5)
-	tween_piscar.tween_property(sprite, "modulate:a", 0.3, 0.1)
-	tween_piscar.tween_property(sprite, "modulate:a", 1.0, 0.1)
-
 
 func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:
 	pass
 
 
-func _on_morreu() -> void:
-	pass
-
-
 func _on_lixo_coletado(tipo: int, textura: Texture2D) -> void:
-	pass
-
-
-func _on_vida_alterada(vidas_atuais: int) -> void:
 	pass

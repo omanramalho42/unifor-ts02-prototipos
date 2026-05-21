@@ -3,18 +3,11 @@ extends CanvasLayer
 @onready var cronometro: Label = $Control/Cronometro
 @onready var pontuacao: Label = $Control/Pontuacao
 @onready var inventario: HBoxContainer = $Control/Inventario
-@onready var vidas: HBoxContainer = $Control/Vidas
 
 const TAMANHO_SLOT := Vector2(48, 48)
 
 # Texture2D → { "slot": Control, "contagem": int }
 var slots: Dictionary = {}
-
-func atualizar_vidas(quantidade: int) -> void:
-	for i in vidas.get_child_count():
-		var coracao := vidas.get_child(i) as CanvasItem
-		if coracao:
-			coracao.visible = i < quantidade
 
 func atualizar_pontuacao(pontos: int) -> void:
 	pontuacao.text = "Pontos: %d" % pontos

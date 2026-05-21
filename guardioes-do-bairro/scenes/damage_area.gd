@@ -1,17 +1,15 @@
 extends Area2D
 
-@export var dano: int = 1
-@export var intervalo: float = 0.5
+signal jogador_fora_da_tela
 
-@onready var timer: Timer = $Timer
+var _disparou: bool = false
 
 func _ready() -> void:
-	timer.wait_time = intervalo
-	timer.one_shot = false
-	timer.timeout.connect(_aplicar_dano)
-	timer.start()
+	body_entered.connect(_on_body_entered)
 
-func _aplicar_dano() -> void:
-	for body in get_overlapping_bodies():
-		if body.is_in_group("player") and body.has_method("receber_dano"):
-			body.receber_dano(dano)
+func _on_body_entered(body: Node) -> void:
+	if _disparou:
+		return
+	if body.is_in_group("player"):
+		_disparou = true
+		jogador_fora_da_tela.emit()

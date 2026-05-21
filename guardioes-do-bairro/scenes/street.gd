@@ -8,7 +8,6 @@ const FIM_DA_FASE_X := 1300.0
 @onready var hud: CanvasLayer = $HUD
 @onready var damage_area: Area2D = $DamageArea
 @onready var coletaveis: Node = get_node_or_null("Coletaveis")
-@onready var obstaculos: Node = get_node_or_null("Obstaculos")
 @onready var lixeiras: Node = get_node_or_null("Lixeiras")
 
 var pontos: int = 0
@@ -19,18 +18,15 @@ func _ready() -> void:
 	GameState.resetar()
 	camera.make_current()
 
-	player.vida_alterada.connect(_on_vida_alterada)
 	player.lixo_coletado.connect(_on_lixo_coletado)
 	player.descarte_feito.connect(_on_descarte_feito)
-	player.morreu.connect(_on_player_morreu)
+	damage_area.jogador_fora_da_tela.connect(_on_jogador_fora_da_tela)
 
 	if coletaveis:
 		for c in coletaveis.get_children():
 			if c.has_signal("coletado"):
 				c.coletado.connect(player.adicionar_lixo)
 
-	if hud.has_method("atualizar_vidas"):
-		hud.atualizar_vidas(player.vidas)
 	if hud.has_method("atualizar_pontuacao"):
 		hud.atualizar_pontuacao(0)
 	if hud.has_method("atualizar_cronometro"):
@@ -50,10 +46,6 @@ func _process(delta: float) -> void:
 	if camera.position.x >= FIM_DA_FASE_X:
 		_terminar_fase(true)
 
-func _on_vida_alterada(vidas_atuais: int) -> void:
-	if hud.has_method("atualizar_vidas"):
-		hud.atualizar_vidas(vidas_atuais)
-
 func _on_lixo_coletado(tipo: int, textura: Texture2D) -> void:
 	if hud.has_method("atualizar_inventario"):
 		hud.atualizar_inventario(tipo, textura)
@@ -66,7 +58,7 @@ func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:
 		if hud.has_method("remover_inventario"):
 			hud.remover_inventario(tipo, textura)
 
-func _on_player_morreu() -> void:
+func _on_jogador_fora_da_tela() -> void:
 	_terminar_fase(false)
 
 func _terminar_fase(venceu: bool) -> void:
