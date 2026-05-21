@@ -1,13 +1,13 @@
 [gd_scene load_steps=13 format=3 uid="uid://cn40nb1bg06rs"]
 
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_tr5t1"]
-[ext_resource type="Script" path="res://scenes/street.gd" id="1_yrasx"]
+[ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
 [ext_resource type="PackedScene" uid="uid://bnx5d5uswai4m" path="res://scenes/player.tscn" id="2_3ffmx"]
 [ext_resource type="PackedScene" uid="uid://cvx7kennjbu3v" path="res://scenes/hud.tscn" id="3_t23v0"]
-[ext_resource type="Script" path="res://scenes/damage_area.gd" id="4_yrasx"]
-[ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="Script" uid="uid://cf625bi22qkev" path="res://scenes/damage_area.gd" id="4_yrasx"]
 [ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://x3yb3rvtl0yn" path="res://assets/collectible/can-1.png" id="9_cotsb"]
+[ext_resource type="PackedScene" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://ds00fb6c0job8" path="res://assets/collectible/can-2.png" id="10_nokxu"]
 
 [sub_resource type="GDScript" id="GDScript_t23v0"]
@@ -89,14 +89,14 @@ shape = SubResource("SegmentShape2D_3ffmx")
 [node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
 process_mode = 3
 
-[node name="Coletaveis" type="Node2D" parent="." unique_id=358812442]
+[node name="Coletaveis" type="Node2D" parent="."]
 
-[node name="Collectible2" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
+[node name="Collectible2" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
 position = Vector2(841, 301)
 tipo = 1
 textura = ExtResource("9_cotsb")
 
-[node name="Collectible" parent="Coletaveis" unique_id=1163463605 instance=ExtResource("8_dxpu0")]
+[node name="Collectible" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
 position = Vector2(363, 542)
 tipo = 1
 textura = ExtResource("10_nokxu")
