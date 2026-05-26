@@ -3,6 +3,7 @@ extends CharacterBody2D
 const VELOCIDADE := 180.0
 const PULO_ALTURA := 16.0
 const PULO_DURACAO := 0.4
+const LIMITE_SLOTS := 3
 
 var pulando: bool = false
 var inventario: Array[Dictionary] = []
@@ -14,6 +15,7 @@ var lixeira_proxima: Node = null
 
 signal lixo_coletado(tipo: int, textura: Texture2D)
 signal descarte_feito(tipo: int, textura: Texture2D, acertou: bool)
+signal inventario_cheio
 
 func _ready() -> void:
 	add_to_group("player")
@@ -30,7 +32,10 @@ func _physics_process(_delta: float) -> void:
 
 func _interagir() -> void:
 	if coletavel_proximo and is_instance_valid(coletavel_proximo):
-		coletavel_proximo.coletar()
+		if _pode_coletar(coletavel_proximo.textura):
+			coletavel_proximo.coletar()
+		else:
+			inventario_cheio.emit()
 
 func _atualizar_animacao() -> void:
 	var movendo := velocity.length() > 0.0
@@ -75,6 +80,17 @@ func proxima_textura_descartavel(tipo_aceito: int) -> Texture2D:
 		if item.tipo == tipo_aceito:
 			return item.textura
 	return null
+
+func _texturas_distintas() -> Array:
+	var ts := []
+	for item in inventario:
+		if not ts.has(item.textura):
+			ts.append(item.textura)
+	return ts
+
+func _pode_coletar(textura: Texture2D) -> bool:
+	var distintas := _texturas_distintas()
+	return distintas.has(textura) or distintas.size() < LIMITE_SLOTS
 
 
 func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:

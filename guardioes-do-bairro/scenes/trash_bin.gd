@@ -13,6 +13,7 @@ enum TipoLixo { PAPEL, METAL, PLASTICO, VIDRO, ORGANICO }
 signal lixo_depositado(tipo_aceito: int, acertou: bool)
 signal progresso_descarte(textura_lixo: Texture2D, fracao: float)
 signal descarte_terminou(textura_lixo: Texture2D)
+signal descarte_errado
 
 var _player_proximo: Node = null
 var _descartando: bool = false
@@ -48,6 +49,11 @@ func _on_body_exited(body: Node2D) -> void:
 func _process(delta: float) -> void:
 	if not _player_proximo:
 		return
+	if Input.is_action_just_pressed("interagir") and not _descartando:
+		if _player_proximo.proxima_textura_descartavel(tipo) == null:
+			if not _player_proximo.inventario.is_empty():
+				descarte_errado.emit()
+			return
 	if Input.is_action_pressed("interagir"):
 		if not _descartando:
 			_iniciar()
