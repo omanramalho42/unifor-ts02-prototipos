@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://bmu3sp15kncu6"]
+[gd_scene load_steps=3 format=3 uid="uid://evcm7wkmmaj2"]
 
-[ext_resource type="Script" uid="uid://cqr62xrtd2kua" path="res://prefabs/scroll_container.gd" id="1_3l2vg"]
+[ext_resource type="Script" path="res://prefabs/scroll_container.gd" id="1_3l2vg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vpr3s"]
 bg_color = Color(0, 0, 0, 1)
