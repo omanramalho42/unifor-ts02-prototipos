@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://c4e765s7v75l7" path="res://assets/ambiente/fase_01.02.png" id="6_582hs"]
 [ext_resource type="Texture2D" uid="uid://dmi6toir8rre" path="res://assets/ambiente/fase_01.03.png" id="7_5turb"]
 [ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
+[ext_resource type="Texture2D" uid="uid://c4cp3kqmnhars" path="res://assets/collectible/casca_de_banana.png" id="8_nokxu"]
 [ext_resource type="Texture2D" uid="uid://cebtt3wtj6bbq" path="res://assets/collectible/latinha.png" id="9_7vla3"]
 [ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://cqftce7wdsd4n" path="res://assets/collectible/latinha_4.png" id="10_0wd0x"]
@@ -128,45 +129,185 @@ process_mode = 3
 
 [node name="Coletaveis" type="Node2D" parent="." unique_id=11718119]
 
-[node name="Collectible3" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
-position = Vector2(721, 556)
+[node name="Caixinha2" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
+position = Vector2(618, 567)
 tipo = 2
 textura = ExtResource("13_5turb")
 
-[node name="Collectible2" parent="Coletaveis" unique_id=1240519143 instance=ExtResource("8_dxpu0")]
+[node name="Latinha" parent="Coletaveis" unique_id=1240519143 instance=ExtResource("8_dxpu0")]
 position = Vector2(841, 301)
 tipo = 1
 textura = ExtResource("9_7vla3")
 
-[node name="Collectible" parent="Coletaveis" unique_id=171203271 instance=ExtResource("8_dxpu0")]
-position = Vector2(891, 432)
+[node name="Latinha2" parent="Coletaveis" unique_id=171203271 instance=ExtResource("8_dxpu0")]
+position = Vector2(861, 455)
 tipo = 1
 textura = ExtResource("10_0wd0x")
 
-[node name="Collectible4" parent="Coletaveis" unique_id=394307608 instance=ExtResource("8_dxpu0")]
-position = Vector2(1021, 477)
+[node name="Garrafa2" parent="Coletaveis" unique_id=394307608 instance=ExtResource("8_dxpu0")]
+position = Vector2(1059, 405)
 tipo = 2
 textura = ExtResource("16_061y5")
 
-[node name="Collectible5" parent="Coletaveis" unique_id=1856301556 instance=ExtResource("8_dxpu0")]
-position = Vector2(1331, 598)
+[node name="Caixinha" parent="Coletaveis" unique_id=1856301556 instance=ExtResource("8_dxpu0")]
+position = Vector2(1441, 568)
 tipo = 2
 textura = ExtResource("13_5turb")
 
-[node name="Collectible6" parent="Coletaveis" unique_id=355045113 instance=ExtResource("8_dxpu0")]
+[node name="Latinha3" parent="Coletaveis" unique_id=355045113 instance=ExtResource("8_dxpu0")]
 position = Vector2(1168, 567)
 tipo = 1
 textura = ExtResource("9_7vla3")
 
-[node name="Collectible7" parent="Coletaveis" unique_id=756941941 instance=ExtResource("8_dxpu0")]
+[node name="Latinha4" parent="Coletaveis" unique_id=756941941 instance=ExtResource("8_dxpu0")]
 position = Vector2(973, 584)
 tipo = 1
 textura = ExtResource("10_0wd0x")
 
-[node name="Collectible8" parent="Coletaveis" unique_id=1487975060 instance=ExtResource("8_dxpu0")]
-position = Vector2(1631, 519)
+[node name="Garrafa" parent="Coletaveis" unique_id=1487975060 instance=ExtResource("8_dxpu0")]
+position = Vector2(1775, 477)
 tipo = 2
 textura = ExtResource("16_061y5")
+
+[node name="Banana2" parent="Coletaveis" unique_id=508365141 instance=ExtResource("8_dxpu0")]
+position = Vector2(611, 360)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Banana" parent="Coletaveis" unique_id=1919480222 instance=ExtResource("8_dxpu0")]
+position = Vector2(1364, 432)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Caixinha3" parent="Coletaveis" unique_id=723028744 instance=ExtResource("8_dxpu0")]
+position = Vector2(2207, 578)
+tipo = 2
+textura = ExtResource("13_5turb")
+
+[node name="Latinha5" parent="Coletaveis" unique_id=650586100 instance=ExtResource("8_dxpu0")]
+position = Vector2(2327, 323)
+tipo = 1
+textura = ExtResource("9_7vla3")
+
+[node name="Latinha6" parent="Coletaveis" unique_id=1798624111 instance=ExtResource("8_dxpu0")]
+position = Vector2(2544, 446)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa3" parent="Coletaveis" unique_id=464464050 instance=ExtResource("8_dxpu0")]
+position = Vector2(2492, 564)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Caixinha4" parent="Coletaveis" unique_id=929677833 instance=ExtResource("8_dxpu0")]
+position = Vector2(2855, 536)
+tipo = 2
+textura = ExtResource("13_5turb")
+
+[node name="Latinha7" parent="Coletaveis" unique_id=511022776 instance=ExtResource("8_dxpu0")]
+position = Vector2(2654, 589)
+tipo = 1
+textura = ExtResource("9_7vla3")
+
+[node name="Latinha8" parent="Coletaveis" unique_id=1135166616 instance=ExtResource("8_dxpu0")]
+position = Vector2(1943, 329)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa4" parent="Coletaveis" unique_id=937538715 instance=ExtResource("8_dxpu0")]
+position = Vector2(2130, 453)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Banana3" parent="Coletaveis" unique_id=346920575 instance=ExtResource("8_dxpu0")]
+position = Vector2(2017, 610)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Banana4" parent="Coletaveis" unique_id=881339392 instance=ExtResource("8_dxpu0")]
+position = Vector2(2994, 557)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Caixinha5" parent="Coletaveis" unique_id=225514875 instance=ExtResource("8_dxpu0")]
+position = Vector2(3465, 587)
+tipo = 2
+textura = ExtResource("13_5turb")
+
+[node name="Latinha9" parent="Coletaveis" unique_id=1290015072 instance=ExtResource("8_dxpu0")]
+position = Vector2(3849, 261)
+tipo = 1
+textura = ExtResource("9_7vla3")
+
+[node name="Latinha10" parent="Coletaveis" unique_id=1583623352 instance=ExtResource("8_dxpu0")]
+position = Vector2(3455, 409)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa5" parent="Coletaveis" unique_id=1328899807 instance=ExtResource("8_dxpu0")]
+position = Vector2(4067, 365)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Caixinha6" parent="Coletaveis" unique_id=8979176 instance=ExtResource("8_dxpu0")]
+position = Vector2(4625, 462)
+tipo = 2
+textura = ExtResource("13_5turb")
+
+[node name="Latinha11" parent="Coletaveis" unique_id=562609160 instance=ExtResource("8_dxpu0")]
+position = Vector2(3773, 587)
+tipo = 1
+textura = ExtResource("9_7vla3")
+
+[node name="Latinha12" parent="Coletaveis" unique_id=1133536427 instance=ExtResource("8_dxpu0")]
+position = Vector2(3958, 388)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa6" parent="Coletaveis" unique_id=1905770746 instance=ExtResource("8_dxpu0")]
+position = Vector2(4372, 356)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Banana5" parent="Coletaveis" unique_id=478869715 instance=ExtResource("8_dxpu0")]
+position = Vector2(3619, 320)
+tipo = 4
+textura = ExtResource("8_nokxu")
+
+[node name="Latinha13" parent="Coletaveis" unique_id=670334900 instance=ExtResource("8_dxpu0")]
+position = Vector2(4899, 406)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa7" parent="Coletaveis" unique_id=554450996 instance=ExtResource("8_dxpu0")]
+position = Vector2(5511, 362)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Caixinha7" parent="Coletaveis" unique_id=137197755 instance=ExtResource("8_dxpu0")]
+position = Vector2(6069, 459)
+tipo = 2
+textura = ExtResource("13_5turb")
+
+[node name="Latinha14" parent="Coletaveis" unique_id=2048831714 instance=ExtResource("8_dxpu0")]
+position = Vector2(5217, 584)
+tipo = 1
+textura = ExtResource("9_7vla3")
+
+[node name="Latinha15" parent="Coletaveis" unique_id=1008969128 instance=ExtResource("8_dxpu0")]
+position = Vector2(5425, 541)
+tipo = 1
+textura = ExtResource("10_0wd0x")
+
+[node name="Garrafa8" parent="Coletaveis" unique_id=1461810029 instance=ExtResource("8_dxpu0")]
+position = Vector2(5816, 353)
+tipo = 2
+textura = ExtResource("16_061y5")
+
+[node name="Banana6" parent="Coletaveis" unique_id=1998480747 instance=ExtResource("8_dxpu0")]
+position = Vector2(5063, 317)
+tipo = 4
+textura = ExtResource("8_nokxu")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1295284920]
 stream = ExtResource("10_cotsb")
@@ -193,31 +334,79 @@ position = Vector2(1263, 307)
 tipo = 3
 textura = ExtResource("16_6epoj")
 
-[node name="TrashBin5" parent="Lixeiras" unique_id=1405747210 instance=ExtResource("12_7gyev")]
-position = Vector2(2281, 307)
-textura = ExtResource("13_1x85o")
-
-[node name="TrashBin6" parent="Lixeiras" unique_id=1364578775 instance=ExtResource("12_7gyev")]
-position = Vector2(2480, 306)
-tipo = 1
-textura = ExtResource("14_0otry")
-
-[node name="TrashBin7" parent="Lixeiras" unique_id=1255868927 instance=ExtResource("12_7gyev")]
-position = Vector2(2589, 304)
-tipo = 2
-textura = ExtResource("15_1fhj6")
-
-[node name="TrashBin8" parent="Lixeiras" unique_id=1787539273 instance=ExtResource("12_7gyev")]
-position = Vector2(2382, 306)
-tipo = 3
-textura = ExtResource("16_6epoj")
-
 [node name="TrashBin9" parent="Lixeiras" unique_id=1414956674 instance=ExtResource("12_7gyev")]
 position = Vector2(1556, 308)
 tipo = 4
 textura = ExtResource("23_061y5")
 
+[node name="TrashBin5" parent="Lixeiras" unique_id=1405747210 instance=ExtResource("12_7gyev")]
+position = Vector2(2569, 307)
+textura = ExtResource("13_1x85o")
+
+[node name="TrashBin6" parent="Lixeiras" unique_id=1364578775 instance=ExtResource("12_7gyev")]
+position = Vector2(2768, 306)
+tipo = 1
+textura = ExtResource("14_0otry")
+
+[node name="TrashBin7" parent="Lixeiras" unique_id=1255868927 instance=ExtResource("12_7gyev")]
+position = Vector2(2877, 304)
+tipo = 2
+textura = ExtResource("15_1fhj6")
+
 [node name="TrashBin10" parent="Lixeiras" unique_id=543598235 instance=ExtResource("12_7gyev")]
-position = Vector2(2690, 305)
+position = Vector2(2978, 305)
 tipo = 4
 textura = ExtResource("23_061y5")
+
+[node name="TrashBin8" parent="Lixeiras" unique_id=1787539273 instance=ExtResource("12_7gyev")]
+position = Vector2(2670, 306)
+tipo = 3
+textura = ExtResource("16_6epoj")
+
+[node name="TrashBin11" parent="Lixeiras" unique_id=2080797720 instance=ExtResource("12_7gyev")]
+position = Vector2(6011, 591)
+textura = ExtResource("13_1x85o")
+
+[node name="TrashBin12" parent="Lixeiras" unique_id=518520446 instance=ExtResource("12_7gyev")]
+position = Vector2(6210, 590)
+tipo = 1
+textura = ExtResource("14_0otry")
+
+[node name="TrashBin13" parent="Lixeiras" unique_id=917494214 instance=ExtResource("12_7gyev")]
+position = Vector2(6319, 588)
+tipo = 2
+textura = ExtResource("15_1fhj6")
+
+[node name="TrashBin14" parent="Lixeiras" unique_id=1428991590 instance=ExtResource("12_7gyev")]
+position = Vector2(6420, 589)
+tipo = 4
+textura = ExtResource("23_061y5")
+
+[node name="TrashBin15" parent="Lixeiras" unique_id=851866050 instance=ExtResource("12_7gyev")]
+position = Vector2(6112, 590)
+tipo = 3
+textura = ExtResource("16_6epoj")
+
+[node name="TrashBin16" parent="Lixeiras" unique_id=1704306048 instance=ExtResource("12_7gyev")]
+position = Vector2(4017, 577)
+textura = ExtResource("13_1x85o")
+
+[node name="TrashBin17" parent="Lixeiras" unique_id=2093217585 instance=ExtResource("12_7gyev")]
+position = Vector2(4204, 575)
+tipo = 1
+textura = ExtResource("14_0otry")
+
+[node name="TrashBin18" parent="Lixeiras" unique_id=1191890656 instance=ExtResource("12_7gyev")]
+position = Vector2(4313, 573)
+tipo = 2
+textura = ExtResource("15_1fhj6")
+
+[node name="TrashBin19" parent="Lixeiras" unique_id=1421696863 instance=ExtResource("12_7gyev")]
+position = Vector2(4414, 574)
+tipo = 4
+textura = ExtResource("23_061y5")
+
+[node name="TrashBin20" parent="Lixeiras" unique_id=2013023004 instance=ExtResource("12_7gyev")]
+position = Vector2(4106, 575)
+tipo = 3
+textura = ExtResource("16_6epoj")
