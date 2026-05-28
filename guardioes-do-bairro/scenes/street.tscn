@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cn40nb1bg06rs"]
+[gd_scene load_steps=25 format=3 uid="uid://cn40nb1bg06rs"]
 
 [ext_resource type="Texture2D" uid="uid://dve64ujhbfikb" path="res://assets/street.png" id="1_tr5t1"]
 [ext_resource type="Script" uid="uid://c5bnmavnofx7f" path="res://scenes/street.gd" id="1_yrasx"]
@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://d1aul7vw2yvrd" path="res://scenes/collectible.tscn" id="8_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://c4cp3kqmnhars" path="res://assets/collectible/casca_de_banana.png" id="8_nokxu"]
 [ext_resource type="Texture2D" uid="uid://cebtt3wtj6bbq" path="res://assets/collectible/latinha.png" id="9_7vla3"]
-[ext_resource type="PackedScene" uid="uid://bnn71athyx3nb" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
+[ext_resource type="PackedScene" path="res://prefabs/pause_menu.tscn" id="9_dxpu0"]
 [ext_resource type="Texture2D" uid="uid://cqftce7wdsd4n" path="res://assets/collectible/latinha_4.png" id="10_0wd0x"]
 [ext_resource type="AudioStream" uid="uid://bb1wdoif00q6b" path="res://assets/songs/Ardie Son - Venture.mp3" id="10_cotsb"]
 [ext_resource type="PackedScene" uid="uid://5rmu1xot5hvp" path="res://scenes/trash_bin.tscn" id="12_7gyev"]
@@ -44,122 +44,122 @@ b = Vector2(-6.5, 443)
 a = Vector2(-860, -3)
 b = Vector2(1900, 7)
 
-[node name="Street" type="Node2D" unique_id=1342912381]
+[node name="Street" type="Node2D"]
 script = ExtResource("1_yrasx")
 metadata/_edit_horizontal_guides_ = [320.0]
 
-[node name="Sprite2D4" type="Sprite2D" parent="." unique_id=1372297279]
+[node name="Sprite2D4" type="Sprite2D" parent="."]
 position = Vector2(3144.7046, 2.3841858e-06)
 scale = Vector2(0.8385416, 0.83854175)
 texture = ExtResource("2_1fhj6")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=851609953]
+[node name="Sprite2D5" type="Sprite2D" parent="."]
 position = Vector2(4297.792, 1.0728836e-06)
 scale = Vector2(0.83854157, 0.8385417)
 texture = ExtResource("3_6epoj")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=1933927690]
+[node name="Sprite2D6" type="Sprite2D" parent="."]
 position = Vector2(5450.7056, 1.19209275e-07)
 scale = Vector2(0.8385415, 0.83854157)
 texture = ExtResource("4_582hs")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=230367238]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("1_tr5t1")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=957400741]
+[node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(1153, 1.90735e-06)
 scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("6_582hs")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=282481433]
+[node name="Sprite2D3" type="Sprite2D" parent="."]
 position = Vector2(1991.0001, 0)
 scale = Vector2(0.838542, 0.838542)
 texture = ExtResource("7_5turb")
 centered = false
 script = SubResource("GDScript_t23v0")
 
-[node name="Player" parent="." unique_id=1793131214 instance=ExtResource("2_3ffmx")]
+[node name="Player" parent="." instance=ExtResource("2_3ffmx")]
 position = Vector2(53, 433)
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=64489674]
+[node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 
-[node name="HUD" parent="." unique_id=1240383009 instance=ExtResource("3_t23v0")]
+[node name="HUD" parent="." instance=ExtResource("3_t23v0")]
 
-[node name="DamageArea" type="Area2D" parent="." unique_id=908039435]
+[node name="DamageArea" type="Area2D" parent="."]
 position = Vector2(-5, 328)
 script = ExtResource("4_yrasx")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea" unique_id=1842691928]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(-2, 1)
 shape = SubResource("SegmentShape2D_yrasx")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=114767473]
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 position = Vector2(192, 642)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=891209010]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="." unique_id=1043457588]
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(663, 248)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2" unique_id=1258559510]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(3, 1)
 shape = SubResource("SegmentShape2D_3ffmx")
 
-[node name="pause_menu" parent="." unique_id=963070783 instance=ExtResource("9_dxpu0")]
+[node name="pause_menu" parent="." instance=ExtResource("9_dxpu0")]
 process_mode = 3
 
-[node name="Coletaveis" type="Node2D" parent="." unique_id=11718119]
+[node name="Coletaveis" type="Node2D" parent="."]
 
-[node name="Collectible3" parent="Coletaveis" unique_id=2099987058 instance=ExtResource("8_dxpu0")]
+[node name="Collectible3" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
 position = Vector2(721, 556)
 tipo = 4
 textura = ExtResource("8_nokxu")
 
-[node name="Collectible2" parent="Coletaveis" unique_id=1240519143 instance=ExtResource("8_dxpu0")]
+[node name="Collectible2" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
 position = Vector2(841, 301)
 tipo = 1
 textura = ExtResource("9_7vla3")
 
-[node name="Collectible" parent="Coletaveis" unique_id=171203271 instance=ExtResource("8_dxpu0")]
+[node name="Collectible" parent="Coletaveis" instance=ExtResource("8_dxpu0")]
 position = Vector2(363, 542)
 tipo = 1
 textura = ExtResource("10_0wd0x")
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="." unique_id=1295284920]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("10_cotsb")
 autoplay = true
 
-[node name="Lixeiras" type="Node2D" parent="." unique_id=310174826]
+[node name="Lixeiras" type="Node2D" parent="."]
 
-[node name="TrashBin3" parent="Lixeiras" unique_id=615893720 instance=ExtResource("12_7gyev")]
+[node name="TrashBin3" parent="Lixeiras" instance=ExtResource("12_7gyev")]
 position = Vector2(3047, 363)
 textura = ExtResource("13_1x85o")
 
-[node name="TrashBin" parent="Lixeiras" unique_id=533215531 instance=ExtResource("12_7gyev")]
+[node name="TrashBin" parent="Lixeiras" instance=ExtResource("12_7gyev")]
 position = Vector2(3297, 358)
 tipo = 1
 textura = ExtResource("14_0otry")
 
-[node name="TrashBin2" parent="Lixeiras" unique_id=413299763 instance=ExtResource("12_7gyev")]
+[node name="TrashBin2" parent="Lixeiras" instance=ExtResource("12_7gyev")]
 position = Vector2(2894, 352)
 tipo = 2
 textura = ExtResource("15_1fhj6")
 
-[node name="TrashBin4" parent="Lixeiras" unique_id=1190383998 instance=ExtResource("12_7gyev")]
+[node name="TrashBin4" parent="Lixeiras" instance=ExtResource("12_7gyev")]
 position = Vector2(3165, 359)
 tipo = 3
 textura = ExtResource("16_6epoj")

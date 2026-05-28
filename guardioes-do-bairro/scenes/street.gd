@@ -21,6 +21,24 @@ func _ready() -> void:
 	camera.make_current()
 	parada_camera_x = FIM_CENARIO_X - get_viewport_rect().size.x / camera.zoom.x
 
+	# =========================================================
+	# CONECTANDO OS COMANDOS DO WEBSOCKET/TCP AO PLAYER
+	var network = get_node_or_null("/root/Main/WebSocket")
+	
+	if network and player:
+		# Vincula os sinais emitidos pela rede com as funções internas do player.gd
+		network.right.connect(player.mover_direita)
+		network.left.connect(player.mover_esquerda)
+		network.up.connect(player.mover_cima)
+		network.take.connect(player.interagir_rede)
+		network.stop.connect(player.parar_movimento) # Conecta a parada do botão
+		print("Street.gd vinculou com sucesso as respostas do ESP32 ao Player!")
+	else:
+		print("Erro: NetworkController ou Player não foram encontrados na cena.")
+
+	# =========================================================
+	# OUTRAS CONEXÕES DO JOGO
+	# =========================================================
 	player.lixo_coletado.connect(_on_lixo_coletado)
 	player.descarte_feito.connect(_on_descarte_feito)
 	damage_area.jogador_fora_da_tela.connect(_on_jogador_fora_da_tela)
