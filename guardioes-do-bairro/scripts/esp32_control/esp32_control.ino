@@ -13,8 +13,8 @@
 #define BTN_JUMP 25
 #define BTN_TAKE 13
 
-const char *ssid = "Cris Pessoa_2G";
-const char *pw = "acapp1213";
+const char *ssid = "UNIFOR-ALUNO";
+const char *pw = "";
 
 bool flag_btn_right = 0;
 bool flag_btn_left = 0;
