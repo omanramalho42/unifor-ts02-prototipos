@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://iqorrcl38xt5"]
+[gd_scene format=3 uid="uid://dljs8uft0u81x"]
 
 [ext_resource type="Script" path="res://scenes/start_screen.gd" id="1_tx5wa"]
 
@@ -6,7 +6,7 @@
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_o7i0r"]
 
-[node name="StartScreen" type="Control"]
+[node name="StartScreen" type="Control" unique_id=1424903766]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,21 +15,21 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_tx5wa")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1656145641]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("PlaceholderTexture2D_tx5wa")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="TextureRect2" type="TextureRect" parent="." unique_id=1321123025]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 texture = SubResource("PlaceholderTexture2D_o7i0r")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1805964306]
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=872767016]

@@ -3,14 +3,26 @@ extends CanvasLayer
 @onready var cronometro: Label = $Control/Cronometro
 @onready var pontuacao: Label = $Control/Pontuacao
 @onready var inventario: HBoxContainer = $Control/Inventario
+@onready var aviso: Label = $Control/Aviso
 
 const TAMANHO_SLOT := Vector2(48, 48)
 
 # Texture2D → { "slot": Control, "contagem": int }
 var slots: Dictionary = {}
 
+var _tween_shake: Tween
+var _pos_inventario_base: Vector2
+var _pos_base_capturada: bool = false
+
 func atualizar_pontuacao(pontos: int) -> void:
 	pontuacao.text = "Pontos: %d" % pontos
+
+func mostrar_aviso(texto: String) -> void:
+	aviso.text = texto
+	aviso.visible = true
+
+func esconder_aviso() -> void:
+	aviso.visible = false
 
 func atualizar_cronometro(segundos: float) -> void:
 	var minutos := int(segundos) / 60
@@ -84,3 +96,19 @@ func esconder_barra_descarte(textura: Texture2D) -> void:
 		return
 	barra.value = 0.0
 	barra.visible = false
+
+func chacoalhar_inventario(cor_flash: Color = Color(1, 0.3, 0.3)) -> void:
+	if _tween_shake and _tween_shake.is_valid():
+		_tween_shake.kill()
+		inventario.position = _pos_inventario_base
+	elif not _pos_base_capturada:
+		_pos_inventario_base = inventario.position
+		_pos_base_capturada = true
+	var base := _pos_inventario_base
+	inventario.modulate = cor_flash
+	_tween_shake = create_tween()
+	for i in 4:
+		_tween_shake.tween_property(inventario, "position:x", base.x + 6.0, 0.04)
+		_tween_shake.tween_property(inventario, "position:x", base.x - 6.0, 0.04)
+	_tween_shake.tween_property(inventario, "position:x", base.x, 0.04)
+	_tween_shake.parallel().tween_property(inventario, "modulate", Color.WHITE, 0.32)
