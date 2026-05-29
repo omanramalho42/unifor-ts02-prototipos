@@ -29,6 +29,53 @@ func _ready() -> void:
 	camera.make_current()
 	parada_camera_x = _parada_para(fim_fase_1_x)
 
+	# =========================================================
+	if WebSocket and player:
+
+		# =========================================
+		# MOVIMENTO
+		# =========================================
+
+		WebSocket.right.connect(player.mover_direita)
+		WebSocket.left.connect(player.mover_esquerda)
+		WebSocket.up.connect(player.mover_cima)
+		WebSocket.down.connect(player.mover_baixo)
+
+		# =========================================
+		# INTERAÇÃO
+		# =========================================
+
+		WebSocket.take.connect(player.interagir_rede)
+
+		# =========================================
+		# PULO
+		# =========================================
+
+		WebSocket.jump.connect(player.pular_rede)
+
+		# =========================================
+		# PARAR
+		# =========================================
+
+		WebSocket.stop.connect(player.parar_movimento)
+
+		# =========================================
+		# DESCARTE HOLD
+		# =========================================
+
+		WebSocket.store_start.connect(
+			player.iniciar_descarte_hold
+		)
+
+		WebSocket.store_cancel.connect(
+			player.cancelar_descarte_hold
+		)
+
+		print("Street conectado ao ESP32!")
+
+	# =========================================================
+	# OUTRAS CONEXÕES DO JOGO
+	# =========================================================
 	player.lixo_coletado.connect(_on_lixo_coletado)
 	player.descarte_feito.connect(_on_descarte_feito)
 	player.inventario_cheio.connect(_on_inventario_cheio)

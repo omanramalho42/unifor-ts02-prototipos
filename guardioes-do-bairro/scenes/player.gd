@@ -11,6 +11,9 @@ var ultima_direcao: String = "down"
 var coletavel_proximo: Node = null
 var lixeira_proxima: Node = null
 
+# Vetor controlado pelos comandos recebidos da rede física
+var direcao_rede := Vector2.ZERO
+
 @onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 
 signal lixo_coletado(tipo: int, textura: Texture2D)
@@ -19,16 +22,185 @@ signal inventario_cheio
 
 func _ready() -> void:
 	add_to_group("player")
-
+	# Procurando o nó de rede na cena e conectando os sinais
+	# NOTA: Ajuste o caminho "/root/Main/NetworkController" para onde seu nó de rede real está!
+	if WebSocket:
+		# Conecta os sinais globais do seu ESP32 diretamente nas funções atuais do Player
+		if WebSocket.has_signal("right"): WebSocket.right.connect(mover_direita)
+		if WebSocket.has_signal("left"): WebSocket.left.connect(mover_esquerda)
+		if WebSocket.has_signal("up"): WebSocket.up.connect(mover_cima)
+		if WebSocket.has_signal("down"): WebSocket.down.connect(mover_baixo)
+		if WebSocket.has_signal("take"): WebSocket.take.connect(interagir_rede)
+		if WebSocket.has_signal("jump"): WebSocket.jump.connect(pular_rede)
+		if WebSocket.has_signal("stop"): WebSocket.stop.connect(parar_movimento)
+		
+		print("Player conectado aos sinais físicos do ESP32!")
+		print("Player conectado aos sinais físicos do ESP32!")
+	else:
+		print("Aviso: NetworkController não foi encontrado na cena.")
+	print("Player conectado aos sinais físicos do ESP32!")
+	
 func _physics_process(_delta: float) -> void:
-	var direcao := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+# =====================================================
+	# MOVIMENTO VIA ESP32
+	# =====================================================
+
+	var direcao := direcao_rede
+
+	# fallback teclado caso ESP32 não envie nada
+	if direcao == Vector2.ZERO:
+		direcao = Input.get_vector(
+			"ui_left",
+			"ui_right",
+			"ui_up",
+			"ui_down"
+		)
+
 	velocity = direcao * VELOCIDADE
+
+	# =====================================================
+	# INPUT LOCAL (TECLADO)
+	# =====================================================
+
 	if Input.is_action_just_pressed("ui_accept") and not pulando:
 		_pular()
+
 	if Input.is_action_just_pressed("interagir"):
 		_interagir()
+
+	# =====================================================
+	# PROCESSO DE DESCARTE
+	# =====================================================
+
+	if descartando and lixeira_proxima != null:
+
+		tempo_descarte += _delta
+
+		var fracao: float = clamp(
+			tempo_descarte / TEMPO_DESCARTE,
+			0.0,
+			1.0
+		)
+
+		var main := get_tree().current_scene
+
+		if main.has_method("_on_progresso_descarte"):
+
+			main._on_progresso_descarte(
+				textura_descarte,
+				fracao
+			)
+
+		if tempo_descarte >= TEMPO_DESCARTE:
+			finalizar_descarte_hold()
+
+	# =====================================================
+	# MOVIMENTAÇÃO
+	# =====================================================
+
 	move_and_slide()
+
+	# =====================================================
+	# ANIMAÇÃO
+	# =====================================================
+
 	_atualizar_animacao()
+
+# =========================================================
+# FUNÇÕES RECEBIDAS DO ESP32
+# =========================================================
+
+func iniciar_descarte_hold() -> void:
+
+	if descartando:
+		return
+
+	if lixeira_proxima == null:
+		return
+
+	lixeira_alvo = lixeira_proxima
+
+	textura_descarte = proxima_textura_descartavel(
+		lixeira_alvo.tipo
+	)
+
+	if textura_descarte == null:
+		return
+
+	descartando = true
+	tempo_descarte = 0.0
+
+
+func cancelar_descarte_hold() -> void:
+
+	if not descartando:
+		return
+
+	descartando = false
+	tempo_descarte = 0.0
+
+	var main := get_tree().current_scene
+
+	if main.has_method("_on_descarte_terminou"):
+
+		main._on_descarte_terminou(
+			textura_descarte
+		)
+
+
+func finalizar_descarte_hold() -> void:
+
+	descartando = false
+
+	if lixeira_alvo == null:
+		return
+
+	var sucesso := descartar_lixo(
+		lixeira_alvo.tipo
+	)
+
+	var main := get_tree().current_scene
+
+	if sucesso:
+
+		if main.has_method("_on_descarte_terminou"):
+
+			main._on_descarte_terminou(
+				textura_descarte
+			)
+
+	else:
+
+		if main.has_method("_on_descarte_errado"):
+
+			main._on_descarte_errado()
+
+	tempo_descarte = 0.0
+	
+func mover_direita():
+	direcao_rede = Vector2.RIGHT
+
+func mover_esquerda():
+	direcao_rede = Vector2.LEFT
+
+func mover_cima():
+	direcao_rede = Vector2.UP
+
+func mover_baixo():
+	direcao_rede = Vector2.DOWN
+
+func parar_movimento():
+	direcao_rede = Vector2.ZERO
+
+func pular_rede() -> void:
+
+	if pulando:
+		return
+
+	_pular()
+
+func interagir_rede():
+	_interagir()
 
 func _interagir() -> void:
 	if coletavel_proximo and is_instance_valid(coletavel_proximo):
@@ -36,6 +208,22 @@ func _interagir() -> void:
 			coletavel_proximo.coletar()
 		else:
 			inventario_cheio.emit()
+
+# =========================================================
+# DESCARTE HOLD
+# =========================================================
+
+var descartando := false
+var tempo_descarte := 0.0
+
+const TEMPO_DESCARTE := 2.0
+
+var textura_descarte: Texture2D = null
+var lixeira_alvo = null
+
+# =========================================================
+# ANIMAÇÕES
+# =========================================================
 
 func _atualizar_animacao() -> void:
 	var movendo := velocity.length() > 0.0
@@ -48,37 +236,71 @@ func _atualizar_animacao() -> void:
 	sprite.play(prefixo + ultima_direcao)
 	sprite.flip_h = ultima_direcao == "left"
 
+# =========================================================
+# PULO
+# =========================================================
+
 func _pular() -> void:
 	pulando = true
+
 	var y_inicial := sprite.position.y
+
 	var tween := create_tween()
-	tween.tween_property(sprite, "position:y", y_inicial - PULO_ALTURA, PULO_DURACAO / 2.0)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-	tween.tween_property(sprite, "position:y", y_inicial, PULO_DURACAO / 2.0)\
-		.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
+	tween.tween_property(
+		sprite,
+		"position:y",
+		y_inicial - PULO_ALTURA,
+		PULO_DURACAO / 2.0
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+
+	tween.tween_property(
+		sprite,
+		"position:y",
+		y_inicial,
+		PULO_DURACAO / 2.0
+	).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+
 	tween.tween_callback(_fim_pulo)
 
 func _fim_pulo() -> void:
 	pulando = false
 
+# =========================================================
+# INVENTÁRIO
+# =========================================================
+
 func descartar_lixo(tipo_aceito: int) -> bool:
 	for i in inventario.size():
+
 		if inventario[i].tipo == tipo_aceito:
+
 			var textura: Texture2D = inventario[i].textura
+
 			inventario.remove_at(i)
+
 			descarte_feito.emit(tipo_aceito, textura, true)
+
 			return true
+
 	descarte_feito.emit(tipo_aceito, null, false)
+
 	return false
 
 func adicionar_lixo(tipo: int, textura: Texture2D) -> void:
-	inventario.append({"tipo": tipo, "textura": textura})
+	inventario.append({
+		"tipo": tipo,
+		"textura": textura
+	})
+
 	lixo_coletado.emit(tipo, textura)
 
 func proxima_textura_descartavel(tipo_aceito: int) -> Texture2D:
 	for item in inventario:
+
 		if item.tipo == tipo_aceito:
 			return item.textura
+
 	return null
 
 func _texturas_distintas() -> Array:
@@ -95,7 +317,6 @@ func _pode_coletar(textura: Texture2D) -> bool:
 
 func _on_descarte_feito(tipo: int, textura: Texture2D, acertou: bool) -> void:
 	pass
-
 
 func _on_lixo_coletado(tipo: int, textura: Texture2D) -> void:
 	pass

@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://bnx5d5uswai4m"]
+[gd_scene load_steps=14 format=3 uid="uid://bnx5d5uswai4m"]
 
 [ext_resource type="Script" uid="uid://cfddiseut3tk3" path="res://scenes/player.gd" id="1_3vyb7"]
 [ext_resource type="Texture2D" uid="uid://b6bnqcfj2gmvy" path="res://assets/personagem/de_frente.png" id="4_d2wvv"]
@@ -105,23 +105,23 @@ size = Vector2(10, 20.5)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2els"]
 size = Vector2(10, 20.5)
 
-[node name="Player" type="CharacterBody2D" unique_id=1787145465]
+[node name="Player" type="CharacterBody2D"]
 scale = Vector2(2, 2)
 script = ExtResource("1_3vyb7")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1260084796]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(1, 0.5)
 scale = Vector2(0.049455356, 0.049455356)
 sprite_frames = SubResource("SpriteFrames_qhqgy")
 animation = &"walk_down"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1461088231]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, -2.25)
 shape = SubResource("RectangleShape2D_dqkch")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=408304593]
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=2083425802]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0.5, -2.25)
 shape = SubResource("RectangleShape2D_g2els")
 
