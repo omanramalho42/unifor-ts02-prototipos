@@ -22,7 +22,7 @@ signal inventario_cheio
 
 func _ready() -> void:
 	add_to_group("player")
-# Procurando o nó de rede na cena e conectando os sinais
+	# Procurando o nó de rede na cena e conectando os sinais
 	# NOTA: Ajuste o caminho "/root/Main/NetworkController" para onde seu nó de rede real está!
 	if WebSocket:
 		# Conecta os sinais globais do seu ESP32 diretamente nas funções atuais do Player
@@ -69,6 +69,32 @@ func _physics_process(_delta: float) -> void:
 		_interagir()
 
 	# =====================================================
+	# PROCESSO DE DESCARTE
+	# =====================================================
+
+	if descartando and lixeira_proxima != null:
+
+		tempo_descarte += _delta
+
+		var fracao: float = clamp(
+			tempo_descarte / TEMPO_DESCARTE,
+			0.0,
+			1.0
+		)
+
+		var main := get_tree().current_scene
+
+		if main.has_method("_on_progresso_descarte"):
+
+			main._on_progresso_descarte(
+				textura_descarte,
+				fracao
+			)
+
+		if tempo_descarte >= TEMPO_DESCARTE:
+			finalizar_descarte_hold()
+
+	# =====================================================
 	# MOVIMENTAÇÃO
 	# =====================================================
 
@@ -84,6 +110,73 @@ func _physics_process(_delta: float) -> void:
 # FUNÇÕES RECEBIDAS DO ESP32
 # =========================================================
 
+func iniciar_descarte_hold() -> void:
+
+	if descartando:
+		return
+
+	if lixeira_proxima == null:
+		return
+
+	lixeira_alvo = lixeira_proxima
+
+	textura_descarte = proxima_textura_descartavel(
+		lixeira_alvo.tipo
+	)
+
+	if textura_descarte == null:
+		return
+
+	descartando = true
+	tempo_descarte = 0.0
+
+
+func cancelar_descarte_hold() -> void:
+
+	if not descartando:
+		return
+
+	descartando = false
+	tempo_descarte = 0.0
+
+	var main := get_tree().current_scene
+
+	if main.has_method("_on_descarte_terminou"):
+
+		main._on_descarte_terminou(
+			textura_descarte
+		)
+
+
+func finalizar_descarte_hold() -> void:
+
+	descartando = false
+
+	if lixeira_alvo == null:
+		return
+
+	var sucesso := descartar_lixo(
+		lixeira_alvo.tipo
+	)
+
+	var main := get_tree().current_scene
+
+	if sucesso:
+
+		if main.has_method("_on_descarte_terminou"):
+
+			main._on_descarte_terminou(
+				textura_descarte
+			)
+
+	else:
+
+		if main.has_method("_on_descarte_errado"):
+
+			main._on_descarte_errado()
+
+	tempo_descarte = 0.0
+	
 func mover_direita():
 	direcao_rede = Vector2.RIGHT
 
@@ -99,9 +192,12 @@ func mover_baixo():
 func parar_movimento():
 	direcao_rede = Vector2.ZERO
 
-func pular_rede():
-	if not pulando:
-		_pular()
+func pular_rede() -> void:
+
+	if pulando:
+		return
+
+	_pular()
 
 func interagir_rede():
 	_interagir()
@@ -112,6 +208,18 @@ func _interagir() -> void:
 			coletavel_proximo.coletar()
 		else:
 			inventario_cheio.emit()
+
+# =========================================================
+# DESCARTE HOLD
+# =========================================================
+
+var descartando := false
+var tempo_descarte := 0.0
+
+const TEMPO_DESCARTE := 2.0
+
+var textura_descarte: Texture2D = null
+var lixeira_alvo = null
 
 # =========================================================
 # ANIMAÇÕES

@@ -10,8 +10,11 @@ signal right()
 signal up()
 signal take()
 signal stop() # Sinal crucial para fazer o player parar de andar!
-
-const ip = "192.168.1.100" 
+signal down()
+signal jump
+signal store_start
+signal store_cancel
+const ip = "192.168.0.5" 
 const port = 80
 
 func _ready():
@@ -56,34 +59,65 @@ func _read_websocket():
 				txt = "" 
 			else:
 				txt = txt + i
-
 func _message_interpreter(msg: String):
+
 	if msg == "":
 		return
-		
-	print("Mensagem recebida do ESP32: ", msg) 
-	
-	var command = msg.split(" ")
+
+	print("Mensagem recebida do ESP32: ", msg)
+
+	var command: Array = msg.split(" ")
+
 	if command.size() < 2:
 		return
-		
-	# command[0] é a ação (DIREITA, ESQUERDA, etc)
-	# command[1] é o estado (1 para pressionado, 0 para solto)
-	
-	# Se o botão foi solto (0), avisa o player para parar
-	if command[1] == "0":
-		emit_signal("stop")
+
+	var acao: String = str(command[0])
+	var estado: String = str(command[1])
+
+	# =====================================================
+	# BOTÃO SOLTO
+	# =====================================================
+
+	if estado == "0":
+
+		match acao:
+
+			"DIREITA", "ESQUERDA", "UP", "CIMA", "BAIXO":
+				emit_signal("stop")
+
+			"TAKE":
+				emit_signal("store_cancel")
+
 		return
 
-	# Caso contrário (1), executa o movimento correspondente
-	if command[0] == "DIREITA":
-		emit_signal("right")
-	elif command[0] == "ESQUERDA":
-		emit_signal("left")
-	elif command[0] == "CIMA" or command[0] == "UP": # Aceita os dois formatos
-		emit_signal("up")
-	elif command[0] == "TAKE":
-		emit_signal("take")
+	# =====================================================
+	# BOTÃO PRESSIONADO
+	# =====================================================
+
+	match acao:
+
+		"DIREITA":
+			emit_signal("right")
+
+		"ESQUERDA":
+			emit_signal("left")
+
+		"UP", "CIMA":
+			emit_signal("up")
+
+		"BAIXO":
+			emit_signal("down")
+
+		"JUMP":
+			emit_signal("jump")
+
+		"TAKE":
+
+			# interação normal
+			emit_signal("take")
+
+			# inicia HOLD de descarte
+			emit_signal("store_start")
 
 func _writeWebSocket(txt: String): 
 	if connected and client.get_status() == StreamPeerTCP.STATUS_CONNECTED:

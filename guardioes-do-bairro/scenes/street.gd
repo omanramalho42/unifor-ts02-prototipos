@@ -30,19 +30,48 @@ func _ready() -> void:
 	parada_camera_x = _parada_para(fim_fase_1_x)
 
 	# =========================================================
-	# CONECTANDO OS COMANDOS DO WEBSOCKET/TCP AO PLAYER
-	var network = get_node_or_null("/root/Main/WebSocket")
-	
-	if network and player:
-		# Vincula os sinais emitidos pela rede com as funções internas do player.gd
-		network.right.connect(player.mover_direita)
-		network.left.connect(player.mover_esquerda)
-		network.up.connect(player.mover_cima)
-		network.take.connect(player.interagir_rede)
-		network.stop.connect(player.parar_movimento) # Conecta a parada do botão
-		print("Street.gd vinculou com sucesso as respostas do ESP32 ao Player!")
-	else:
-		print("Erro: NetworkController ou Player não foram encontrados na cena.")
+	if WebSocket and player:
+
+		# =========================================
+		# MOVIMENTO
+		# =========================================
+
+		WebSocket.right.connect(player.mover_direita)
+		WebSocket.left.connect(player.mover_esquerda)
+		WebSocket.up.connect(player.mover_cima)
+		WebSocket.down.connect(player.mover_baixo)
+
+		# =========================================
+		# INTERAÇÃO
+		# =========================================
+
+		WebSocket.take.connect(player.interagir_rede)
+
+		# =========================================
+		# PULO
+		# =========================================
+
+		WebSocket.jump.connect(player.pular_rede)
+
+		# =========================================
+		# PARAR
+		# =========================================
+
+		WebSocket.stop.connect(player.parar_movimento)
+
+		# =========================================
+		# DESCARTE HOLD
+		# =========================================
+
+		WebSocket.store_start.connect(
+			player.iniciar_descarte_hold
+		)
+
+		WebSocket.store_cancel.connect(
+			player.cancelar_descarte_hold
+		)
+
+		print("Street conectado ao ESP32!")
 
 	# =========================================================
 	# OUTRAS CONEXÕES DO JOGO
